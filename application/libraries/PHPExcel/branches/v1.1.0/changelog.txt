@@ -1,0 +1,119 @@
+**************************************************************************************
+* PHPExcel
+*
+* Copyright (c) 2006 - 2007 PHPExcel, Maarten Balliauw
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+* 
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+* 
+* You should have received a copy of the GNU General Public License along
+* with this program; if not, write to the Free Software Foundation, Inc.,
+* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*
+* @copyright  Copyright (c) 2006 - 2007 PHPExcel (http://www.codeplex.com/PHPExcel)
+* @license    http://www.gnu.org/licenses/gpl.txt	GPL
+**************************************************************************************
+
+To do:
+- Reader/Writers for other file formats
+
+
+
+To be planned:
+
+
+
+2007/03/22 (v 1.1.0):
+- Changed filenames of tests
+- Bugfix:   (MB) Work item 836 - Style information lost after passing trough Excel2007_Reader
+- Bugfix:   (MB) Work item 913 - Number of columns > AZ fails fixed in PHPExcel_Cell::columnIndexFromString
+- General:  (MB) Added a brief file with installation instructions
+- Feature:  (MB) Page breaks (horizontal and vertical)
+- Feature:  (MB) Image shadows
+
+
+
+2007/02/22 (v 1.0.0):
+- Changelog now includes developer initials
+- Bugfix:   (JV) PHPExcel->removeSheetByIndex now re-orders sheets after deletion, so no array indexes are lost
+- Bugfix:   (JV) PHPExcel_Writer_Excel2007_Worksheet::_writeCols() used direct assignment to $pSheet->getColumnDimension('A')->Width instead of $pSheet->getColumnDimension('A')->setWidth()
+- Bugfix:   (JV) DocumentProperties used $this->LastModifiedBy instead of $this->_lastModifiedBy.
+- Bugfix:   (JV) Only first = should be removed when writing formula in PHPExcel_Writer_Excel2007_Worksheet.
+- General:  (JV) Consistency of method names to camelCase
+- General:  (JV) Updated tests to match consistency changes
+- General:  (JV) Detection of mime-types now with image_type_to_mime_type()
+- General:  (JV) Constants now hold string value used in Excel 2007
+- General:  (MB) Fixed folder name case (WorkSheet -> Worksheet)
+- Feature:  (MB) PHPExcel classes (not the Writer classes) can be duplicated, using a duplicate() method.
+- Feature:  (MB) Cell styles can now be duplicated to a range of cells using PHPExcel_Worksheet->duplicateStyle()
+- Feature:  (MB) Conditional formatting
+- Feature:  (JV) Reader for Excel 2007 (not supporting full specification yet!)
+
+
+
+2007/01/31 (v 1.0.0 RC):
+- Project name has been changed to PHPExcel
+- Project homepage is now http://www.codeplex.com/PHPExcel
+- Started versioning at number: PHPExcel 1.0.0 RC
+
+
+
+2007/01/22:
+- Fixed some performance issues on large-scale worksheets (mainly loops vs. indexed arrays)
+- Performance on creating StringTable has been increased
+- Performance on writing Excel2007 worksheet has been increased
+
+
+
+2007/01/18:
+- Images can now be rotated
+- Fixed bug: When drawings have full path specified, no mime type can be deducted
+- Fixed bug: Only one drawing can be added to a worksheet
+
+
+
+2007/01/12:
+- Refactoring of some classes to use ArrayObject instead of array()
+- Cell style now has support for number format (i.e. #,##0)
+- Implemented embedding images
+
+
+
+2007/01/02:
+- Cell style now has support for fills, including gradient fills
+- Cell style now has support for fonts
+- Cell style now has support for border colors
+- Cell style now has support for font colors
+- Cell style now has support for alignment
+
+
+
+2006/12/21:
+- Support for cell style borders
+- Support for cell styles
+- Refactoring of Excel2007 Writer into multiple classes in package SpreadSheet_Writer_Excel2007
+- Refactoring of all classes, changed public members to public properties using getter/setter
+- Worksheet names are now unique. On duplicate worksheet names, a number is appended.
+- Worksheet now has parent SpreadSheet object
+- Worksheet now has support for page header and footer
+- Worksheet now has support for page margins
+- Worksheet now has support for page setup (only Paper size and Orientation)
+- Worksheet properties now accessible by using getProperties()
+- Worksheet now has support for row and column dimensions (height / width)
+- Exceptions thrown have a more clear description
+
+
+
+Initial version:
+- Create a Spreadsheet object
+- Add one or more Worksheet objects
+- Add cells to Worksheet objects
+- Export Spreadsheet object to Excel 2007 OpenXML format
+- Each cell supports the following data formats: string, number, formula, boolean.

@@ -1,0 +1,1428 @@
+<html>
+<head>
+<title>Docs For Class PHPExcel_Worksheet_Protection</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">PHPExcel_Worksheet</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_PHPExcel_Worksheet.html" class="menu">class tree: PHPExcel_Worksheet</a> ]
+		  [ <a href="../elementindex_PHPExcel_Worksheet.html" class="menu">index: PHPExcel_Worksheet</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_PHPExcel.html">PHPExcel</a><br />
+              <a href="../li_PHPExcel_Cell.html">PHPExcel_Cell</a><br />
+              <a href="../li_PHPExcel_Reader.html">PHPExcel_Reader</a><br />
+              <a href="../li_PHPExcel_Shared.html">PHPExcel_Shared</a><br />
+              <a href="../li_PHPExcel_Style.html">PHPExcel_Style</a><br />
+              <a href="../li_PHPExcel_Worksheet.html">PHPExcel_Worksheet</a><br />
+              <a href="../li_PHPExcel_Worksheet_Drawing.html">PHPExcel_Worksheet_Drawing</a><br />
+              <a href="../li_PHPExcel_Writer.html">PHPExcel_Writer</a><br />
+              <a href="../li_PHPExcel_Writer_Excel2007.html">PHPExcel_Writer_Excel2007</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_ColumnDimension_php.html">		ColumnDimension.php
+		</a><br>
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_Drawing_php.html">		Drawing.php
+		</a><br>
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_HeaderFooter_php.html">		HeaderFooter.php
+		</a><br>
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_PageMargins_php.html">		PageMargins.php
+		</a><br>
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_PageSetup_php.html">		PageSetup.php
+		</a><br>
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_Protection_php.html">		Protection.php
+		</a><br>
+			<a href="../PHPExcel_Worksheet/_Classes_PHPExcel_Worksheet_RowDimension_php.html">		RowDimension.php
+		</a><br>
+	  </div><br />
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_ColumnDimension.html">PHPExcel_Worksheet_ColumnDimension</a><br />
+	    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Drawing.html">PHPExcel_Worksheet_Drawing</a><br />
+	    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_HeaderFooter.html">PHPExcel_Worksheet_HeaderFooter</a><br />
+	    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_PageMargins.html">PHPExcel_Worksheet_PageMargins</a><br />
+	    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_PageSetup.html">PHPExcel_Worksheet_PageSetup</a><br />
+	    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html">PHPExcel_Worksheet_Protection</a><br />
+	    		<a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_RowDimension.html">PHPExcel_Worksheet_RowDimension</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: PHPExcel_Worksheet_Protection</h1>
+Source Location: /PHPExcel/Worksheet/Protection.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">PHPExcel_Worksheet_Protection</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+        </ul>
+
+
+
+
+      
+  
+
+<h4>Copyright:</h4>
+<ul>
+  <li>Copyright (c) 2006 - 2007 PHPExcel (http://www.codeplex.com/PHPExcel)</li>
+</ul>
+
+</td>
+
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_autoFilter">$_autoFilter</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_deleteColumns">$_deleteColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_deleteRows">$_deleteRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_formatCells">$_formatCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_formatColumns">$_formatColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_formatRows">$_formatRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_insertColumns">$_insertColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_insertHyperlinks">$_insertHyperlinks</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_insertRows">$_insertRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_objects">$_objects</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_password">$_password</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_pivotTables">$_pivotTables</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_scenarios">$_scenarios</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_selectLockedCells">$_selectLockedCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_selectUnlockedCells">$_selectUnlockedCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_sheet">$_sheet</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#var$_sort">$_sort</a></li>
+  </ul>
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#method__construct">__construct</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodduplicate">duplicate</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetAutoFilter">getAutoFilter</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetDeleteColumns">getDeleteColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetDeleteRows">getDeleteRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetFormatCells">getFormatCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetFormatColumns">getFormatColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetFormatRows">getFormatRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetInsertColumns">getInsertColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetInsertHyperlinks">getInsertHyperlinks</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetInsertRows">getInsertRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetObjects">getObjects</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetPassword">getPassword</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetPivotTables">getPivotTables</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetScenarios">getScenarios</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetSelectLockedCells">getSelectLockedCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetSelectUnlockedCells">getSelectUnlockedCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetSheet">getSheet</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodgetSort">getSort</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodisProtectionEnabled">isProtectionEnabled</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetAutoFilter">setAutoFilter</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetDeleteColumns">setDeleteColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetDeleteRows">setDeleteRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetFormatCells">setFormatCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetFormatColumns">setFormatColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetFormatRows">setFormatRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetInsertColumns">setInsertColumns</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetInsertHyperlinks">setInsertHyperlinks</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetInsertRows">setInsertRows</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetObjects">setObjects</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetPassword">setPassword</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetPivotTables">setPivotTables</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetScenarios">setScenarios</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetSelectLockedCells">setSelectLockedCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetSelectUnlockedCells">setSelectUnlockedCells</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetSheet">setSheet</a></li>
+    <li><a href="../PHPExcel_Worksheet/PHPExcel_Worksheet_Protection.html#methodsetSort">setSort</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a40">40</a>]<br />
+PHPExcel_Worksheet_Protection<br /><br /><p>PHPExcel_Worksheet_Protection</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright (c) 2006 - 2007 PHPExcel (http://www.codeplex.com/PHPExcel)</td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$_autoFilter"></a>
+	<p></p>
+	<h4>$_autoFilter = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a138">138</a>]</p>
+  AutoFilter<br /><br /><p>AutoFilter</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_deleteColumns"></a>
+	<p></p>
+	<h4>$_deleteColumns = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a110">110</a>]</p>
+  Delete columns<br /><br /><p>Delete columns</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_deleteRows"></a>
+	<p></p>
+	<h4>$_deleteRows = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a117">117</a>]</p>
+  Delete rows<br /><br /><p>Delete rows</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_formatCells"></a>
+	<p></p>
+	<h4>$_formatCells = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a68">68</a>]</p>
+  Format cells<br /><br /><p>Format cells</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_formatColumns"></a>
+	<p></p>
+	<h4>$_formatColumns = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a75">75</a>]</p>
+  Format columns<br /><br /><p>Format columns</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_formatRows"></a>
+	<p></p>
+	<h4>$_formatRows = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a82">82</a>]</p>
+  Format rows<br /><br /><p>Format rows</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_insertColumns"></a>
+	<p></p>
+	<h4>$_insertColumns = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a89">89</a>]</p>
+  Insert columns<br /><br /><p>Insert columns</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_insertHyperlinks"></a>
+	<p></p>
+	<h4>$_insertHyperlinks = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a103">103</a>]</p>
+  Insert hyperlinks<br /><br /><p>Insert hyperlinks</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_insertRows"></a>
+	<p></p>
+	<h4>$_insertRows = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a96">96</a>]</p>
+  Insert rows<br /><br /><p>Insert rows</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_objects"></a>
+	<p></p>
+	<h4>$_objects = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a54">54</a>]</p>
+  Objects<br /><br /><p>Objects</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_password"></a>
+	<p></p>
+	<h4>$_password = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a159">159</a>]</p>
+  Password<br /><br /><p>Password</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>string</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_pivotTables"></a>
+	<p></p>
+	<h4>$_pivotTables = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a145">145</a>]</p>
+  Pivot tables<br /><br /><p>Pivot tables</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_scenarios"></a>
+	<p></p>
+	<h4>$_scenarios = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a61">61</a>]</p>
+  Scenarios<br /><br /><p>Scenarios</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_selectLockedCells"></a>
+	<p></p>
+	<h4>$_selectLockedCells = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a124">124</a>]</p>
+  Select locked cells<br /><br /><p>Select locked cells</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_selectUnlockedCells"></a>
+	<p></p>
+	<h4>$_selectUnlockedCells = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a152">152</a>]</p>
+  Select unlocked cells<br /><br /><p>Select unlocked cells</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_sheet"></a>
+	<p></p>
+	<h4>$_sheet = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a47">47</a>]</p>
+  Sheet<br /><br /><p>Sheet</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$_sort"></a>
+	<p></p>
+	<h4>$_sort = <span class="value"></span></h4>
+	<p>[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a131">131</a>]</p>
+  Sort<br /><br /><p>Sort</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>boolean</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="method__construct"></a>
+	<h3>constructor __construct <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a164">164</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>PHPExcel_Worksheet_Protection __construct(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Create a new PHPExcel_Worksheet_Protection<br /><br /><p>Create a new PHPExcel_Worksheet_Protection</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodduplicate"></a>
+	<h3>method duplicate <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a528">528</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../PHPExcel/PHPExcel_DocumentProperties.html">PHPExcel_DocumentProperties</a> duplicate(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Duplicate object
+ Duplicates the current object, also duplicating referenced objects (deep cloning).<br /><br /><p>Duplicate object
+ Duplicates the current object, also duplicating referenced objects (deep cloning). Standard PHP clone does not copy referenced objects!</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetAutoFilter"></a>
+	<h3>method getAutoFilter <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a449">449</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getAutoFilter(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get AutoFilter<br /><br /><p>Get AutoFilter</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetDeleteColumns"></a>
+	<h3>method getDeleteColumns <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a377">377</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getDeleteColumns(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get DeleteColumns<br /><br /><p>Get DeleteColumns</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetDeleteRows"></a>
+	<h3>method getDeleteRows <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a395">395</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getDeleteRows(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get DeleteRows<br /><br /><p>Get DeleteRows</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFormatCells"></a>
+	<h3>method getFormatCells <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a269">269</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getFormatCells(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get FormatCells<br /><br /><p>Get FormatCells</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFormatColumns"></a>
+	<h3>method getFormatColumns <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a287">287</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getFormatColumns(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get FormatColumns<br /><br /><p>Get FormatColumns</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFormatRows"></a>
+	<h3>method getFormatRows <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a305">305</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getFormatRows(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get FormatRows<br /><br /><p>Get FormatRows</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetInsertColumns"></a>
+	<h3>method getInsertColumns <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a323">323</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getInsertColumns(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get InsertColumns<br /><br /><p>Get InsertColumns</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetInsertHyperlinks"></a>
+	<h3>method getInsertHyperlinks <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a359">359</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getInsertHyperlinks(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get InsertHyperlinks<br /><br /><p>Get InsertHyperlinks</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetInsertRows"></a>
+	<h3>method getInsertRows <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a341">341</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getInsertRows(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get InsertRows<br /><br /><p>Get InsertRows</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetObjects"></a>
+	<h3>method getObjects <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a233">233</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getObjects(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get Objects<br /><br /><p>Get Objects</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetPassword"></a>
+	<h3>method getPassword <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a503">503</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getPassword(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get Password (hashed)<br /><br /><p>Get Password (hashed)</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetPivotTables"></a>
+	<h3>method getPivotTables <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a467">467</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getPivotTables(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get PivotTables<br /><br /><p>Get PivotTables</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetScenarios"></a>
+	<h3>method getScenarios <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a251">251</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getScenarios(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get Scenarios<br /><br /><p>Get Scenarios</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetSelectLockedCells"></a>
+	<h3>method getSelectLockedCells <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a413">413</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getSelectLockedCells(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get SelectLockedCells<br /><br /><p>Get SelectLockedCells</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetSelectUnlockedCells"></a>
+	<h3>method getSelectUnlockedCells <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a485">485</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getSelectUnlockedCells(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get SelectUnlockedCells<br /><br /><p>Get SelectUnlockedCells</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetSheet"></a>
+	<h3>method getSheet <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a215">215</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getSheet(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get Sheet<br /><br /><p>Get Sheet</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetSort"></a>
+	<h3>method getSort <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a431">431</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean getSort(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get Sort<br /><br /><p>Get Sort</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodisProtectionEnabled"></a>
+	<h3>method isProtectionEnabled <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a191">191</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean isProtectionEnabled(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Is some sort of protection enabled?<br /><br /><p>Is some sort of protection enabled?</p><br /><br /><br />
+
+
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetAutoFilter"></a>
+	<h3>method setAutoFilter <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a458">458</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setAutoFilter(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set AutoFilter<br /><br /><p>Set AutoFilter</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDeleteColumns"></a>
+	<h3>method setDeleteColumns <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a386">386</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setDeleteColumns(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set DeleteColumns<br /><br /><p>Set DeleteColumns</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetDeleteRows"></a>
+	<h3>method setDeleteRows <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a404">404</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setDeleteRows(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set DeleteRows<br /><br /><p>Set DeleteRows</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetFormatCells"></a>
+	<h3>method setFormatCells <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a278">278</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setFormatCells(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set FormatCells<br /><br /><p>Set FormatCells</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetFormatColumns"></a>
+	<h3>method setFormatColumns <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a296">296</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setFormatColumns(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set FormatColumns<br /><br /><p>Set FormatColumns</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetFormatRows"></a>
+	<h3>method setFormatRows <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a314">314</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setFormatRows(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set FormatRows<br /><br /><p>Set FormatRows</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetInsertColumns"></a>
+	<h3>method setInsertColumns <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a332">332</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setInsertColumns(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set InsertColumns<br /><br /><p>Set InsertColumns</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetInsertHyperlinks"></a>
+	<h3>method setInsertHyperlinks <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a368">368</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setInsertHyperlinks(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set InsertHyperlinks<br /><br /><p>Set InsertHyperlinks</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetInsertRows"></a>
+	<h3>method setInsertRows <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a350">350</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setInsertRows(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set InsertRows<br /><br /><p>Set InsertRows</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetObjects"></a>
+	<h3>method setObjects <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a242">242</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setObjects(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set Objects<br /><br /><p>Set Objects</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetPassword"></a>
+	<h3>method setPassword <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a513">513</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setPassword(
+[string
+$pValue = ''], [boolean
+$pAlreadyHashed = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set Password<br /><br /><p>Set Password</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pAlreadyHashed</b>&nbsp;&nbsp;</td>
+        <td>If the password has already been hashed, set this to true</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetPivotTables"></a>
+	<h3>method setPivotTables <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a476">476</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setPivotTables(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set PivotTables<br /><br /><p>Set PivotTables</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetScenarios"></a>
+	<h3>method setScenarios <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a260">260</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setScenarios(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set Scenarios<br /><br /><p>Set Scenarios</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetSelectLockedCells"></a>
+	<h3>method setSelectLockedCells <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a422">422</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setSelectLockedCells(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set SelectLockedCells<br /><br /><p>Set SelectLockedCells</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetSelectUnlockedCells"></a>
+	<h3>method setSelectUnlockedCells <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a494">494</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setSelectUnlockedCells(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set SelectUnlockedCells<br /><br /><p>Set SelectUnlockedCells</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetSheet"></a>
+	<h3>method setSheet <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a224">224</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setSheet(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set Sheet<br /><br /><p>Set Sheet</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetSort"></a>
+	<h3>method setSort <span class="smalllinenumber">[line <a href="..//__filesource/fsource_PHPExcel_Worksheet__PHPExcelWorksheetProtection.php.html#a440">440</a>]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setSort(
+[boolean
+$pValue = false])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set Sort<br /><br /><p>Set Sort</p><br /><br /><br />
+
+
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$pValue</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Mon, 23 Apr 2007 12:55:11 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

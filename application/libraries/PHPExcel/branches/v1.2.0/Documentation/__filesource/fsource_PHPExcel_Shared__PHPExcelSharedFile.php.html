@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>File Source for File.php</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">PHPExcel_Shared</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+  		  [ <a href="../classtrees_PHPExcel_Shared.html" class="menu">class tree: PHPExcel_Shared</a> ]
+		  [ <a href="../elementindex_PHPExcel_Shared.html" class="menu">index: PHPExcel_Shared</a> ]
+		  [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_PHPExcel.html">PHPExcel</a><br />
+              <a href="../li_PHPExcel_Cell.html">PHPExcel_Cell</a><br />
+              <a href="../li_PHPExcel_Reader.html">PHPExcel_Reader</a><br />
+              <a href="../li_PHPExcel_Shared.html">PHPExcel_Shared</a><br />
+              <a href="../li_PHPExcel_Style.html">PHPExcel_Style</a><br />
+              <a href="../li_PHPExcel_Worksheet.html">PHPExcel_Worksheet</a><br />
+              <a href="../li_PHPExcel_Worksheet_Drawing.html">PHPExcel_Worksheet_Drawing</a><br />
+              <a href="../li_PHPExcel_Writer.html">PHPExcel_Writer</a><br />
+              <a href="../li_PHPExcel_Writer_Excel2007.html">PHPExcel_Writer_Excel2007</a><br />
+            <br /><br />
+                  
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1 align="center">Source for file File.php</h1>
+<p>Documentation is available at <a href="../PHPExcel_Shared/_Classes_PHPExcel_Shared_File_php.html">File.php</a></p>
+<div class="php">
+<div class="listing"><pre><ol><li><a name="a1"></a><span class="src-php">&lt;?php</span></li>
+<li><a name="a2"></a><span class="src-doc">/**</span></li>
+<li><a name="a3"></a><span class="src-doc"> * PHPExcel</span></li>
+<li><a name="a4"></a><span class="src-doc"> *</span></li>
+<li><a name="a5"></a><span class="src-doc"> * Copyright (c) 2006 - 2007 PHPExcel, Maarten Balliauw</span></li>
+<li><a name="a6"></a><span class="src-doc"> *</span></li>
+<li><a name="a7"></a><span class="src-doc"> * This library is free software; you can redistribute it and/or</span></li>
+<li><a name="a8"></a><span class="src-doc"> * modify it under the terms of the GNU Lesser General Public</span></li>
+<li><a name="a9"></a><span class="src-doc"> * License as published by the Free Software Foundation; either</span></li>
+<li><a name="a10"></a><span class="src-doc"> * version 2.1 of the License, or (at your option) any later version.</span></li>
+<li><a name="a11"></a><span class="src-doc"> * </span></li>
+<li><a name="a12"></a><span class="src-doc"> * This library is distributed in the hope that it will be useful,</span></li>
+<li><a name="a13"></a><span class="src-doc"> * but WITHOUT ANY WARRANTY; without even the implied warranty of</span></li>
+<li><a name="a14"></a><span class="src-doc"> * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</span></li>
+<li><a name="a15"></a><span class="src-doc"> * Lesser General Public License for more details.</span></li>
+<li><a name="a16"></a><span class="src-doc"> * </span></li>
+<li><a name="a17"></a><span class="src-doc"> * You should have received a copy of the GNU Lesser General Public</span></li>
+<li><a name="a18"></a><span class="src-doc"> * License along with this library; if not, write to the Free Software</span></li>
+<li><a name="a19"></a><span class="src-doc"> * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA</span></li>
+<li><a name="a20"></a><span class="src-doc"> *</span></li>
+<li><a name="a21"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@category</span><span class="src-doc">   PHPExcel</span></li>
+<li><a name="a22"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@package</span><span class="src-doc">    PHPExcel_Shared</span></li>
+<li><a name="a23"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@copyright</span><span class="src-doc">  Copyright (c) 2006 - 2007 PHPExcel (http://www.codeplex.com/PHPExcel)</span></li>
+<li><a name="a24"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@license</span><span class="src-doc">    http://www.gnu.org/licenses/lgpl.txt    LGPL</span></li>
+<li><a name="a25"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@version</span><span class="src-doc">    ##VERSION##, ##DATE##</span></li>
+<li><a name="a26"></a><span class="src-doc"> */</span></li>
+<li><a name="a27"></a>&nbsp;</li>
+<li><a name="a28"></a>&nbsp;</li>
+<li><a name="a29"></a><span class="src-doc">/**</span></li>
+<li><a name="a30"></a><span class="src-doc"> * PHPExcel_Shared_File</span></li>
+<li><a name="a31"></a><span class="src-doc"> *</span></li>
+<li><a name="a32"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@category</span><span class="src-doc">   PHPExcel</span></li>
+<li><a name="a33"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@package</span><span class="src-doc">    PHPExcel_Shared</span></li>
+<li><a name="a34"></a><span class="src-doc"> * </span><span class="src-doc-coretag">@copyright</span><span class="src-doc">  Copyright (c) 2006 - 2007 PHPExcel (http://www.codeplex.com/PHPExcel)</span></li>
+<li><a name="a35"></a><span class="src-doc"> */</span></li>
+<li><a name="a36"></a><span class="src-key">class </span><a href="../PHPExcel_Shared/PHPExcel_Shared_File.html">PHPExcel_Shared_File</a></li>
+<li><a name="a37"></a><span class="src-sym">{</span></li>
+<li><a name="a38"></a>    <span class="src-key">public </span><span class="src-key">static </span><span class="src-key">function </span><a href="../PHPExcel_Shared/PHPExcel_Shared_File.html#methodfile_exists">file_exists</a><span class="src-sym">(</span><span class="src-var">$pFilename</span><span class="src-sym">) </span><span class="src-sym">{</span></li>
+<li><a name="a39"></a>        <span class="src-comm">// Sick construction, but it seems that</span></li>
+<li><a name="a40"></a>        <span class="src-comm">// file_exists returns strange values when</span></li>
+<li><a name="a41"></a>        <span class="src-comm">// doing the original file_exists on ZIP archives...</span></li>
+<li><a name="a42"></a>        <span class="src-var">$fh </span>= <a href="http://www.php.net/fopen">fopen</a><span class="src-sym">(</span><span class="src-var">$pFilename</span><span class="src-sym">, </span><span class="src-str">'r'</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a43"></a>        <span class="src-var">$exists </span>= <span class="src-sym">(</span><span class="src-var">$fh </span>!== <span class="src-id">false</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a44"></a>        <a href="http://www.php.net/fclose">fclose</a><span class="src-sym">(</span><span class="src-var">$fh</span><span class="src-sym">)</span><span class="src-sym">;</span></li>
+<li><a name="a45"></a>        </li>
+<li><a name="a46"></a>        <span class="src-key">return </span><span class="src-var">$exists</span><span class="src-sym">;</span></li>
+<li><a name="a47"></a>    <span class="src-sym">}</span></li>
+<li><a name="a48"></a><span class="src-sym">}</span></li>
+</ol></pre></div>
+</div>
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Mon, 23 Apr 2007 12:52:55 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.3.0RC3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
