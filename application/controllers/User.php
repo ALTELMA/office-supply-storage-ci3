@@ -20,8 +20,8 @@ class User extends CI_Controller{
 	public function verifylogin()
 	{
 		// SETUP VARIABLE
-		$username = mysql_real_escape_string($this->input->post('txt_username'));
-		$password = mysql_real_escape_string($this->input->post('txt_password'));
+		$username = $this->input->post('txt_username');
+		$password = $this->input->post('txt_password');
 		$encodePassword = md5($password);
 
 		$result = $this->userModel->checkUserLogin($username, $encodePassword);
@@ -41,7 +41,7 @@ class User extends CI_Controller{
 			$this->session->set_userdata('userLogData', $sess_array);
 			redirect('asset/page', 'refresh');
 		} else {
-			redirect('asset/page', 'refresh');
+			redirect('', 'refresh');
 		}
 	}
 

@@ -17,8 +17,8 @@ class Asset extends CI_controller{
 		$this->load->library('MyExcel');
 	}
 
-	public function index(){
-
+	public function index()
+	{
 		if(!$this->session->userdata('userLogData')){
 			$data['title'] = 'ระบบฐานข้อมูลครุภัณฑ์และทรัพย์สินในสำนักงาน';
 			$this->load->view('login', $data);
@@ -27,7 +27,10 @@ class Asset extends CI_controller{
 		}
 	}
 
-	public function page($id = NULL){
+	public function page($id = NULL)
+	{
+		if(!$this->session->userdata('userLogData'))
+			redirect('', 'refresh');
 
 		// GET KEYWORD FROM SEARCH PANEL AND ADD TO SESSION
 		if($this->input->post('searchSubmit') != NULL){
