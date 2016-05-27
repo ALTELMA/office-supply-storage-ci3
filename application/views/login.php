@@ -34,7 +34,7 @@ echo link_tag($favicon);
     <div id="container">
         <div id="login">
             <h1>Login</h1>
-            <form method="POST" action="<?php echo base_url().'user/verifylogin';?>">
+            <form method="POST" action="<?php echo 'user/verifylogin' ;?>">
                 <p><input type="text" name="txt_username" placeholder="ชื่อผู้ใช้งาน"></p>
                 <p><input type="password" name="txt_password" placeholder="รหัสผ่าน"></p>
                 <p class="submit"><input type="submit" name="login" value="เข้าสู่ระบบ"></p>

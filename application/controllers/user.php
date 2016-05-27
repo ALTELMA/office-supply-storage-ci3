@@ -2,7 +2,8 @@
 
 class User extends CI_Controller{
 
-	public function __construct() {
+	public function __construct()
+	{
 
 		parent::__construct();
 
@@ -10,13 +11,14 @@ class User extends CI_Controller{
 		$this->load->model('userModel', '', TRUE);
 	}
 
-	public function index(){
+	public function index()
+	{
 
 	}
 
 	// CHECK USER LOGIN
-	public function verifylogin() {
-
+	public function verifylogin()
+	{
 		// SETUP VARIABLE
 		$username = mysql_real_escape_string($this->input->post('txt_username'));
 		$password = mysql_real_escape_string($this->input->post('txt_password'));
@@ -24,9 +26,9 @@ class User extends CI_Controller{
 
 		$result = $this->userModel->checkUserLogin($username, $encodePassword);
 
-		if($result){
+		if($result) {
 			$sess_array = array();
-			foreach($result as $row){
+			foreach($result as $row) {
 				$sess_array = array(
 							'user_id' => $row->user_id,
 							'username' => $row->username,
@@ -38,13 +40,14 @@ class User extends CI_Controller{
 			// SETUP SESSION
 			$this->session->set_userdata('userLogData', $sess_array);
 			redirect('asset/page', 'refresh');
-		}else{
+		} else {
 			redirect('asset/page', 'refresh');
 		}
 	}
 
 	// USER LOGOUT
-	public function logout(){
+	public function logout()
+	{
 		$this->session->sess_destroy();
 		redirect('asset', 'refresh');
 	}
@@ -53,7 +56,8 @@ class User extends CI_Controller{
 	// PAGE
 	// ==================================================================
 
-	public function view($id){
+	public function view($id)
+	{
 
 		$data['title'] = 'ข้อมูลผู้ใช้งานระบบ';
 

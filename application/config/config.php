@@ -24,11 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 if (ENVIRONMENT == 'production') {
-	$config['base_url'] = 'http://www.' . $_SERVER['SERVER_NAME'];
+	$config['base_url'] = $_SERVER['SERVER_NAME'];
 } elseif(ENVIRONMENT == 'development' && $_SERVER['SERVER_NAME'] != 'localhost') {
-	$config['base_url'] = 'http://www.' . $_SERVER['SERVER_NAME'];
+	$config['base_url'] = $_SERVER['SERVER_NAME'];
 } else {
-	$config['base_url'] = 'http://' . $_SERVER['SERVER_NAME'] . '/office-supply-storage-ci3/';
+	$config['base_url'] = $_SERVER['SERVER_NAME'] . '/office-supply-storage-ci3/';
 }
 
 /*
