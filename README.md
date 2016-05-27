@@ -1,6 +1,6 @@
 # Office Supply Storage System
 
-Application for store company equipment, develop base on codeigniter 3
+Application for store office supply, develop base on codeigniter 3 
 
 - Add / Edit / Delete asset
 - Add / Edit / Delete asset's category
