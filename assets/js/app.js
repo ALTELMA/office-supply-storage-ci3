@@ -1,5 +1,4 @@
 // JavaScript Document
-
 $(document).ready(function(){
 
 	// =======================================================================
@@ -47,7 +46,7 @@ $(document).ready(function(){
 		if(code2 == null){code2 = '';}
 
 		$.ajax({
-			url: getRootURL+'OfficeEquipmentManager/asset/ajax',
+			url: getRootURL+'/product/ajax',
 			data: 'req=chkCode&code1='+code1+'&code2='+code2,
 			cache: false,
 			type: 'POST',
@@ -71,7 +70,7 @@ $(document).ready(function(){
 		var cat_id = $(this).val();
 
 		$.ajax({
-			url: getRootURL+'OfficeEquipmentManager/asset/ajax',
+			url: getRootURL + '/product/ajax',
 			data: 'req=subCat&cat_id='+cat_id,
 			cache: false,
 			type: 'POST',

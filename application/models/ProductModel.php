@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH'))exit('No direct script access allowed');
 
-class AssetModel extends CI_Model{
+class ProductModel extends CI_Model{
 
 	private function date2db($input){
 
@@ -15,19 +15,19 @@ class AssetModel extends CI_Model{
 	}
 
 	// GET REGULAR DATA LIST
-	public function getDataList($table,$cond = NULL){
+	public function getDataList($table, $cond = NULL) {
 
-		if(empty($cond)){
+		if(empty($cond)) {
 			$this->db->select()->from($table);
-		}else{
+		} else {
 			$this->db->select()->from($table)->where($cond);
 		}
 
 		$query = $this->db->get();
 
-		if($query->num_rows >= 1){
+		if($query->num_rows() >= 1) {
 			return $query->result();
-		}else{
+		} else {
 			return FALSE;
 		}
 	}
@@ -41,7 +41,7 @@ class AssetModel extends CI_Model{
 
 		$query = $this->db->get();
 
-		if($query->num_rows >= 1){
+		if($query->num_rows() >= 1){
 			return $query->result();
 		}else{
 			return FALSE;
@@ -58,7 +58,7 @@ class AssetModel extends CI_Model{
 
 		$query = $this->db->get();
 
-		if($query->num_rows >= 1){
+		if($query->num_rows() >= 1){
 			return $query->result();
 		}else{
 			return FALSE;
@@ -109,7 +109,7 @@ class AssetModel extends CI_Model{
 	}
 
 	// GET ASSET SEARCH DATA LIST
-	public function getAssetDataList($key,$perPage,$limitPage = 10){
+	public function getAssetDataList($key){
 
 		$this->db->select()->from('asset');
 		$this->db->join('asset_status', 'asset.status = asset_status.status_id', 'left outer');
@@ -127,7 +127,7 @@ class AssetModel extends CI_Model{
 			$this->db->like('code',$key[2])->or_like('detail',$key[2]);
 		}
 
-		if(!empty($perPage)){$this->db->order_by('code','ASC')->limit($perPage,$limitPage);}
+		$this->db->order_by('code','ASC');
 
 		$query = $this->db->get();
 

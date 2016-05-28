@@ -20,8 +20,8 @@ class User extends CI_Controller{
 	public function verifylogin()
 	{
 		// SETUP VARIABLE
-		$username = $this->input->post('txt_username');
-		$password = $this->input->post('txt_password');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 		$encodePassword = md5($password);
 
 		$result = $this->userModel->checkUserLogin($username, $encodePassword);
@@ -37,9 +37,8 @@ class User extends CI_Controller{
 				$this->userModel->userLoginUpdate($row->user_id);
 			}
 
-			// SETUP SESSION
 			$this->session->set_userdata('userLogData', $sess_array);
-			redirect('asset/page', 'refresh');
+			redirect('dashboard/index', 'refresh');
 		} else {
 			redirect('', 'refresh');
 		}
@@ -49,7 +48,7 @@ class User extends CI_Controller{
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('asset', 'refresh');
+		redirect('product', 'refresh');
 	}
 
 	// ==================================================================

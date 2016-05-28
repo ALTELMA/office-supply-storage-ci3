@@ -1,46 +1,24 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title><?php echo $title;?></title>
-<?php
-// RESET CSS
-$resetCSS = array(
-			'href' => 'assets/css/resetcss.css',
-			'rel' => 'stylesheet',
-			'type' => 'text/css'
-			);
-echo link_tag($resetCSS);
-
-// CORE CSS
-$coreCSS = array(
-			'href' => 'assets/css/login.css',
-			'rel' => 'stylesheet',
-			'type' => 'text/css'
-			);
-echo link_tag($coreCSS);
-
-// FAVICON
-$favicon = array(
-		'href' => 'assets/img/icons/favicon.ico',
-		'rel' => 'shortcut icon'
-		);
-echo link_tag($favicon);
-?>
-</head>
-
-<body>
-<div id="warpper">
-    <div id="container">
-        <div id="login">
-            <h1>Login</h1>
-            <form method="POST" action="<?php echo 'user/verifylogin' ;?>">
-                <p><input type="text" name="txt_username" placeholder="ชื่อผู้ใช้งาน"></p>
-                <p><input type="password" name="txt_password" placeholder="รหัสผ่าน"></p>
-                <p class="submit"><input type="submit" name="login" value="เข้าสู่ระบบ"></p>
-            </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <?php echo form_open('user/verifylogin') ?>
+                        <fieldset>
+                            <div class="form-group">
+                            <input class="form-control" placeholder="Username" name="username" type="text" autofocus="">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <button class="btn btn-lg btn-success btn-block">Login</button>
+                        </fieldset>
+                    <?php echo form_close() ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</body>
-</html>

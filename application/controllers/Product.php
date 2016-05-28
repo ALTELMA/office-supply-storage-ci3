@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH'))exit('No direct script access allowed');
 
-class Asset extends CI_controller{
+class Product extends MY_Controller{
 
 	public function __construct(){
 
@@ -8,7 +8,7 @@ class Asset extends CI_controller{
 
 		// LOAD MODEL
 		$this->load->model('userModel', '', TRUE);
-		$this->load->model('assetModel', '', TRUE);
+		$this->load->model('productModel', '', TRUE);
 
 		// LOAD LIBRARY
 		$this->load->library('MyUpload');
@@ -19,26 +19,27 @@ class Asset extends CI_controller{
 
 	public function index()
 	{
-		if(!$this->session->userdata('userLogData')){
-			$data['title'] = 'ระบบฐานข้อมูลครุภัณฑ์และทรัพย์สินในสำนักงาน';
-			$this->load->view('login', $data);
-		}else{
-			redirect('asset/page', 'refresh');
+		if(!$this->session->userdata('userLogData')) {
+			$this->data['title'] = 'ระบบฐานข้อมูลครุภัณฑ์และทรัพย์สินในสำนักงาน';
+			$this->content = 'login';
+			$this->layout('full-width-no-header');
+		} else {
+			redirect('product/listing', 'refresh');
 		}
 	}
 
-	public function page($id = NULL)
+	public function listing()
 	{
 		if(!$this->session->userdata('userLogData'))
 			redirect('', 'refresh');
 
 		// GET KEYWORD FROM SEARCH PANEL AND ADD TO SESSION
-		if($this->input->post('searchSubmit') != NULL){
-			$search_sess = array(
-						'category_id' => $this->input->post('assetCat'),
-						'sub_category_id' => $this->input->post('assetSubCat'),
-						'keyword' => $this->input->post('txt_search')
-						);
+		if($this->input->post('searchSubmit') != NULL) {
+			$search_sess = [
+				'category_id'     => $this->input->post('assetCat'),
+				'sub_category_id' => $this->input->post('assetSubCat'),
+				'keyword'         => $this->input->post('txt_search')
+			];
 			$this->session->set_userdata('searchData',$search_sess);
 		}
 
@@ -47,52 +48,33 @@ class Asset extends CI_controller{
 		$session_search = $this->session->userdata('searchData');
 
 		// SET KEY FOR QUERY DATA SEARCH
-		$key = array($session_search['category_id'],$session_search['sub_category_id'],$session_search['keyword']);
-
-		// CONFIG PAGINATION
-		$config['base_url'] = base_url().'asset/page/';
-		$config['total_rows'] = $this->assetModel->getAssetCount($key);
-		$config['per_page'] = 10;
-		$config['uri_segment'] = 3;
-		$config['full_tag_open'] = '<div class="pagination">';
-		$config['full_tag_close'] = '</div>';
-		$config['cur_tag_open'] = '&nbsp;<span class="current">';
-		$config['cur_tag_close'] = '</span>';
-		$config['first_link'] = 'หน้าแรก';
-		$config['last_link'] = 'หน้าสุดท้าย';
-		$config['prev_link'] = '<';
-		$config['next_link'] = '>';
-		$config['num_links'] = 6;
-		$this->pagination->initialize($config);
+		$key = [$session_search['category_id'], $session_search['sub_category_id'], $session_search['keyword']];
 
 		// LOAD DATA
-		$categoryList = $this->assetModel->getDataList('category');
+		$categoryList = $this->productModel->getDataList('category');
 		$cond = array('cat_id' => $session_search['category_id']); // SubCatCondition
-		$subCategoryList = $this->assetModel->getDataList('sub_category', $cond);
+		$subCategoryList = $this->productModel->getDataList('sub_category', $cond);
 
 		// QUERY DATABASE FROM SEARCH
-		$assetList = $this->assetModel->getAssetDataList($key,$config['per_page'],$id);
+		$products = $this->productModel->getAssetDataList($key);
 
-		$data['title'] = 'รายชื่อทรัพย์สินและครุภัณฑ์';
-		$data['userID'] = $session_data['user_id'];
-		$data['name'] = $session_data['name'];
-		$data['categoryResult'] = $categoryList;
-		$data['subCategoryResult'] = $subCategoryList;
-		$data['assetResult'] = $assetList;
-		$data['cat_id'] = $session_search['category_id'];
-		$data['subCat_id'] = $session_search['sub_category_id'];
-		$data['keyword'] = $session_search['keyword'];
-		$data['totalRow'] = $config['total_rows'];
+		$this->data['title'] = 'รายชื่อทรัพย์สินและครุภัณฑ์';
+		$this->data['userID'] = $session_data['user_id'];
+		$this->data['name'] = $session_data['name'];
+		$this->data['categoryResult'] = $categoryList;
+		$this->data['subCategoryResult'] = $subCategoryList;
+		$this->data['products'] = $products;
+		$this->data['cat_id'] = $session_search['category_id'];
+		$this->data['subCat_id'] = $session_search['sub_category_id'];
+		$this->data['keyword'] = $session_search['keyword'];
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/userPanel', $data);
-		$this->load->view('asset_list', $data);
-		$this->load->view('templates/footer', $data);
+		$this->content = 'product/list';
+		$this->layout();
 	}
 
 	// VIEW ASSET DETAIL
-	public function view($id = NULL){
-
+	public function view($id = NULL)
+	{
 		// LOAD SESSION DATA
 		$session_data = $this->session->userdata('userLogData');
 
@@ -115,19 +97,19 @@ class Asset extends CI_controller{
 	}
 
 	// ADD ASSET DATA
-	public function add(){
-
+	public function add()
+	{
 		// LOAD SESSION DATA
 		$session_data = $this->session->userdata('userLogData');
 
 		// LOAD DATA FROM DATABASE
-		$categoryList = $this->assetModel->getDataList('category');
+		$categoryList = $this->productModel->getDataList('category');
 		$cond = array('cat_id' => 1); // SubCatCondition
-		$subCategoryList = $this->assetModel->getDataList('sub_category',$cond);
-		$statusList = $this->assetModel->getDataList('asset_status');
-		$departmentList = $this->assetModel->getDataList('department');
+		$subCategoryList = $this->productModel->getDataList('sub_category', $cond);
+		$statusList = $this->productModel->getDataList('asset_status');
+		$departmentList = $this->productModel->getDataList('department');
 
-		if($this->input->post('asset_add') != NULL){
+		if($this->input->post('asset_add') != NULL) {
 
 			// CONFIG DESTINATION PATH
 			$thumbPath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/thumb';
@@ -136,71 +118,68 @@ class Asset extends CI_controller{
 			$resizeName = 'asset_cover_resize'.date('YmdHis');
 
 			// THUMB IMAGE 100x100
-			if($_FILES['asset_img']['tmp_name']){
+			if($_FILES['asset_img']['tmp_name']) {
 				$thumb = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $thumbPath, $thumbName, 'gif', 100);
-			}else{
+			} else {
 				$thumb = '';
 				$this->myupload->error = '';
 			}
 
 			// RESIZE IMAGE 400x400
-			if($_FILES['asset_img']['tmp_name']){
+			if($_FILES['asset_img']['tmp_name']) {
 				$resize = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $resizePath, $resizeName, 'gif', 400);
-			}else{
+			} else {
 				$resize = '';
 				$this->myupload->error = '';
 			}
 
 			// INSERT DATA
-			$this->assetModel->assetAdd($thumb,$resize);
-			redirect('asset', 'refresh');
+			$this->productModel->assetAdd($thumb,$resize);
+			redirect('product/listing', 'refresh');
 		}
 
-		$data['title'] = 'เพิ่มข้อมูลทรัพย์สินและครุภัณฑ์';
-		$data['userID'] = $session_data['user_id'];
-		$data['name'] = $session_data['name'];
-		$data['categoryResult'] = $categoryList;
-		$data['subCategoryResult'] = $subCategoryList;
-		$data['statusResult'] = $statusList;
-		$data['departmentResult'] = $departmentList;
+		$this->data['title'] = 'เพิ่มข้อมูลทรัพย์สินและครุภัณฑ์';
+		$this->data['userID'] = $session_data['user_id'];
+		$this->data['name'] = $session_data['name'];
+		$this->data['categoryResult'] = $categoryList;
+		$this->data['subCategoryResult'] = $subCategoryList;
+		$this->data['statusResult'] = $statusList;
+		$this->data['departmentResult'] = $departmentList;
 
-		// LOAD PAGE
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/userPanel', $data);
-		$this->load->view('asset_add', $data);
-		$this->load->view('templates/footer', $data);
+		$this->content = 'product/add';
+		$this->layout();
 	}
 
 	// ASSET EDIT DATA
-	public function edit($id = NULL){
-
-		if(!empty($id)){
+	public function edit($id = null)
+	{
+		if(!empty($id)) {
 
 			// LOAD SESSION DATA
 			$session_data = $this->session->userdata('userLogData');
 
 			// LOAD DATA FROM DATABASE
-			$assetObj = $this->assetModel->getAssetRow($id);
-			$categoryList = $this->assetModel->getDataList('category');
-			$cond = array('cat_id' => $assetObj->cat_id); // SubCatCondition
-			$subCategoryList = $this->assetModel->getDataList('sub_category',$cond);
-			$statusList = $this->assetModel->getDataList('asset_status');
-			$departmentList = $this->assetModel->getDataList('department');
+			$product = $this->productModel->getAssetRow($id);
+			$categoryList = $this->productModel->getDataList('category');
+			$cond = array('cat_id' => $product->cat_id); // SubCatCondition
+			$subCategoryList = $this->productModel->getDataList('sub_category',$cond);
+			$statusList = $this->productModel->getDataList('asset_status');
+			$departmentList = $this->productModel->getDataList('department');
 
 			// CONFIG DATA SEND TO PAGE
-			$data['title'] = 'เพิ่มข้อมูลทรัพย์สินและครุภัณฑ์';
-			$data['userID'] = $session_data['user_id'];
-			$data['name'] = $session_data['name'];
-			$data['categoryResult'] = $categoryList;
-			$data['subCategoryResult'] = $subCategoryList;
-			$data['statusResult'] = $statusList;
-			$data['departmentResult'] = $departmentList;
-			$data['assetData'] = $assetObj;
+			$this->data['title'] = 'แก้ไขข้อมูลทรัพย์สินและครุภัณฑ์';
+			$this->data['userID'] = $session_data['user_id'];
+			$this->data['name'] = $session_data['name'];
+			$this->data['categoryResult'] = $categoryList;
+			$this->data['subCategoryResult'] = $subCategoryList;
+			$this->data['statusResult'] = $statusList;
+			$this->data['departmentResult'] = $departmentList;
+			$this->data['product'] = $product;
 
 			// DO ACTION EDIT WHEN SUBMIT
-			if($this->input->post('asset_edit') != NULL){
+			if($this->input->post('asset_edit') != NULL) {
 
-				if(!empty($_FILES['asset_img']['tmp_name'])){
+				if(!empty($_FILES['asset_img']['tmp_name'])) {
 					// CONFIG DESTINATION PATH
 					$thumbPath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/thumb';
 					$resizePath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/resize';
@@ -208,38 +187,36 @@ class Asset extends CI_controller{
 					$resizeName = 'asset_cover_resize'.date('YmdHis');
 
 					// THUMB IMAGE 100x100
-					if($_FILES['asset_img']['tmp_name']){
-						@unlink($thumbPath.$assetObj->assetThumbPic);
+					if($_FILES['asset_img']['tmp_name']) {
+						@unlink($thumbPath.$product->assetThumbPic);
 						$thumb = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $thumbPath, $thumbName, 'gif', 100);
-					}else{
+					} else {
 						$thumb = '';
 						$this->myupload->error = '';
 					}
 
 					// RESIZE IMAGE 400x400
-					if($_FILES['asset_img']['tmp_name']){
-						@unlink($resizePath.$assetObj->assetFullPic);
+					if($_FILES['asset_img']['tmp_name']) {
+						@unlink($resizePath.$product->assetFullPic);
 						$resize = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $resizePath, $resizeName, 'gif', 400);
-					}else{
+					} else {
 						$resize = '';
 						$this->myupload->error = '';
 					}
-				}else{
-					$thumb = $assetObj->assetThumbPic;
-					$resize = $assetObj->assetFullPic;
+				} else {
+					$thumb = $product->assetThumbPic;
+					$resize = $product->assetFullPic;
 				}
 
-				$this->assetModel->assetUpdate($id,$thumb,$resize);
-				redirect('asset/page/'.$this->uri->segment(4),'refresh');
+				$this->productModel->assetUpdate($id,$thumb,$resize);
+				redirect('product/listing', 'refresh');
 			}
 
 			// LOAD PAGE
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/userPanel', $data);
-			$this->load->view('asset_edit', $data);
-			$this->load->view('templates/footer', $data);
+			$this->content = 'product/edit';
+			$this->layout();
 		}else{
-			redirect('asset', 'refresh');
+			redirect('product/listing', 'refresh');
 		}
 	}
 
@@ -249,14 +226,14 @@ class Asset extends CI_controller{
 		if(!empty($id)){
 
 			// LOAD DATA
-			$assetObj = $this->assetModel->getDataRow('asset','id',$id);
+			$assetObj = $this->productModel->getDataRow('asset','id',$id);
 			$approveData = empty($assetObj->IsApproved)?1:0;
 
 			$updateData = array('IsApproved' => $approveData);
-			$this->assetModel->updateData('asset',$updateData,'id',$id);
-			redirect('asset','refresh');
+			$this->productModel->updateData('asset',$updateData,'id',$id);
+			redirect('product/listing','refresh');
 		}else{
-			redirect('asset','refresh');
+			redirect('product/listing','refresh');
 		}
 	}
 
@@ -264,74 +241,42 @@ class Asset extends CI_controller{
 	public function del($id){
 
 		if(!empty($id)){
-			$this->assetModel->assetDelete($id);
-			redirect('asset', 'refresh');
+			$this->productModel->assetDelete($id);
+			redirect('product/listing', 'refresh');
 		}else{
-			redirect('asset', 'refresh');
+			redirect('product/listing', 'refresh');
 		}
 	}
 
 	// ASSETS MAIN CATEGORY LIST
-	public function category($page = NULL, $id = NULL){
-
+	public function category($page = NULL, $id = NULL)
+	{
 		// LOAD SESSION DATA
 		$session_data = $this->session->userdata('userLogData');
 
-		if($page == NULL || $page == 'list'){
-
-			// CONFIG PAGINATION
-			$config['base_url'] = base_url().'asset/category/list';
-			$config['total_rows'] = $this->assetModel->getDataCount('category');
-			$config['per_page'] = 10;
-			$config['uri_segment'] = 4;
-			$config['full_tag_open'] = '<div class="pagination">';
-			$config['full_tag_close'] = '</div>';
-			$config['cur_tag_open'] = '&nbsp;<span class="current">';
-			$config['cur_tag_close'] = '</span>';
-			$config['first_link'] = 'หน้าแรก';
-			$config['last_link'] = 'หน้าสุดท้าย';
-			$config['prev_link'] = '<';
-			$config['next_link'] = '>';
-			$config['num_links'] = 6;
-			$this->pagination->initialize($config);
+		if($page == NULL || $page == 'list') {
 
 			// LOAD DATA FROM DATABASE
-			$categoryList = $this->assetModel->getDataLimit('category','catType','ASC',$config['per_page'],$id);
+			$categories = $this->productModel->getDataList('category');
 
-			$data['title'] = 'ประเภทของข้อมูลทรัพย์สินและครุภัณฑ์';
-			$data['userID'] = $session_data['user_id'];
-			$data['name'] = $session_data['name'];
-			$data['categoryResult'] = $categoryList;
+			$this->data['title'] = 'ประเภทของข้อมูลทรัพย์สินและครุภัณฑ์';
+			$this->data['userID'] = $session_data['user_id'];
+			$this->data['name'] = $session_data['name'];
+			$this->data['categories'] = $categories;
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/userPanel', $data);
-			$this->load->view('asset_cat_list', $data);
-			$this->load->view('templates/footer', $data);
+			$this->content = 'category/list';
+			$this->layout();
 
-		}elseif($page == 'view'){
+		} elseif($page == 'view') {
 
 			if(!empty($id)){
 
 				// CONFIG PAGINATION
-				$config['base_url'] = base_url().'asset/category/view/'.$id;
 				$cond = array('cat_id' => $id);
-				$config['total_rows'] = $this->assetModel->getDataCount('sub_category',$cond);
-				$config['per_page'] = 10;
-				$config['uri_segment'] = 5;
-				$config['full_tag_open'] = '<div class="pagination">';
-				$config['full_tag_close'] = '</div>';
-				$config['cur_tag_open'] = '&nbsp;<span class="current">';
-				$config['cur_tag_close'] = '</span>';
-				$config['first_link'] = 'หน้าแรก';
-				$config['last_link'] = 'หน้าสุดท้าย';
-				$config['prev_link'] = '<';
-				$config['next_link'] = '>';
-				$config['num_links'] = 6;
-				$this->pagination->initialize($config);
 
 				// LOAD DATA
-				$categoryObj = $this->assetModel->getDataRow('category', 'cat_id', $id);
-				$subCatList = $this->assetModel->getDataLimitFilter('sub_category',$cond,'id','ASC',$config['per_page'],$this->uri->segment(5));
+				$categoryObj = $this->productModel->getDataRow('category', 'cat_id', $id);
+				$subCatList = $this->productModel->getDataList('sub_category', $cond);
 
 				$data['title'] = 'รายละเอียดประเภทครุภัณฑ์';
 				$data['userID'] = $session_data['user_id'];
@@ -345,11 +290,11 @@ class Asset extends CI_controller{
 				$this->load->view('templates/footer', $data);
 			}
 
-		}elseif($page == 'add'){
+		} elseif($page == 'add') {
 
 			if($this->input->post('submit')){
-				$this->assetModel->categoryAdd();
-				redirect('asset/category');
+				$this->productModel->categoryAdd();
+				redirect('product/category');
 			}
 
 			// CONFIG DATA SEND TO VIEW
@@ -363,16 +308,16 @@ class Asset extends CI_controller{
 			$this->load->view('templates/footer', $data);
 
 		// EDIT ASSET CATEGORY
-		}elseif($page == 'edit'){
+		} elseif($page == 'edit') {
 
 			if(!empty($id)){
 
 				// LOAD CATEGORY DATA
-				$categoryObj = $this->assetModel->getDataRow('category','cat_id',$id);
+				$categoryObj = $this->productModel->getDataRow('category', 'cat_id', $id);
 
 				if($this->input->post('submit')){
-					$this->assetModel->categoryUpdate($id);
-					redirect('asset/category');
+					$this->productModel->categoryUpdate($id);
+					redirect('product/category');
 				}
 
 				// CONFIG DATA SEND TO VIEW
@@ -388,11 +333,11 @@ class Asset extends CI_controller{
 				}
 
 		// DEL ASSET CATEGORY
-		}elseif($page == 'del'){
+		} elseif($page == 'del') {
 
 			if(!empty($id)){
-				$this->assetModel->delDataRow('category','cat_id',$id);
-				redirect('asset/category', 'refresh');
+				$this->productModel->delDataRow('category', 'cat_id', $id);
+				redirect('product/category', 'refresh');
 			}
 		}
 	}
@@ -653,24 +598,24 @@ class Asset extends CI_controller{
 			$session_data = $this->session->userdata('searchData');
 			$cat_id = $session_data['category_id'];
 
-			$cat_id = mysql_real_escape_string($this->input->post('cat_id'));
+			$cat_id = $this->input->post('cat_id');
 			$cond = array('cat_id' => $cat_id);
-			$subCategoryList = $this->assetModel->getDataList('sub_category',$cond);
+			$subCategoryList = $this->productModel->getDataList('sub_category',$cond);
 
 			if($cat_id != 0){
-				echo '<option value="">เลือกประเภทย่อย</option>';
+				echo '<option value="">เลือกประเภทย่อยของทรัพย์สิน</option>';
 				foreach($subCategoryList as $subCategoryData){
 					echo '<option value=\''.$subCategoryData->id.'\'>'.$subCategoryData->subTypeName.'</option>';
 				}
 			}else{
-				echo '<option value="">เลือกประเภทย่อย</option>';
+				echo '<option value="">เลือกประเภทย่อยของทรัพย์สิน</option>';
 			}
 		}elseif($callData == 'chkCode'){
 
 			// COUNT DATA AND CHECK IT
 			$code1 = $this->input->post('code1') != NULL?$this->input->post('code1'):'';
 			$code2 = $this->input->post('code2') != NULL?$this->input->post('code2'):'';
-			$chkData = $this->assetModel->getAssetCheck($code1,$code2);
+			$chkData = $this->productModel->getAssetCheck($code1,$code2);
 
 			echo $chkData;
 		}
