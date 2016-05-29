@@ -19,17 +19,21 @@
         <div class="panel panel-default">
             <div class="panel-heading">เพิ่มข้อมูล</div>
             <div class="panel-body">
-                <?php echo form_open('product/category/add') ?>
+                <?php echo form_open('product/subcategory/add') ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>หมวดหมู่หลัก</label>
-                            <input id="txt_type" class="form-control" name="txt_type" placeholder="หมวดหมู่หลัก">
-                            <p class="help-block">ตัวอย่าง A - โต๊ะ, B - โต๊ะ, C - โต๊ะ</p>
+                            <label>ประเภทของทรัพย์สิน</label>
+                            <select id="assetCat" class="form-control" name="assetCat">
+                                <option value="">เลือกประเภทของทรัพย์สิน</option>
+                                <?php foreach($categoryList as $categoryData): ?>
+                                    <option value="<?php echo $categoryData->cat_id; ?>"><?php echo $categoryData->catName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>ชื่อประเภททรัพย์สิน</label>
-                            <input id="txt_category" class="form-control" name="txt_category" placeholder="ชื่อประเภททรัพย์สิน">
+                            <label>ชื่อหมวดหมู่ทรัพย์สิน</label>
+                            <input id="txt_subcategory" class="form-control" name="txt_subcategory" placeholder="ชื่อหมวดหมู่ทรัพย์สิน">
                         </div>
                     </div>
                 </div>
@@ -38,7 +42,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" name="submit" value="บันทึกข้อมูล">
-                            <input type="button" class="btn btn-default" value="ยกเลิก" onClick="window.location.href = '<?php echo base_url('product/category'); ?>';">
+                            <input type="button" class="btn btn-default" value="ยกเลิก" onClick="window.location.href = '<?php echo base_url('product/subcategory'); ?>';">
                         </div>
                     </div>
                 </div>

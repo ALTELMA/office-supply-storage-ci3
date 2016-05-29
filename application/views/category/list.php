@@ -16,7 +16,7 @@
 
 <div class="row">
 	<div class="col-md-12 text-right">
-		<a href="<?php echo base_url('category/add'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> เพิ่มข้อมูล</a>
+		<a href="<?php echo base_url('product/category/add'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> เพิ่มข้อมูล</a>
 	</div>
 </div>
 
@@ -40,13 +40,10 @@
 							<td><?php echo $category->catType; ?></td>
 							<td><?php echo $category->catName; ?></td>
 							<td align="center">
-								<a href="<?php echo base_url('product/verify/' . $category->cat_id ); ?>" class="btn btn-success btn-xs">
-									<i class="fa fa-check"></i>
-								</a>
-								<a href="<?php echo base_url('product/edit/' . $category->cat_id ); ?>" class="btn btn-warning btn-xs">
+								<a href="<?php echo base_url('product/category/edit/' . $category->cat_id ); ?>" class="btn btn-warning btn-xs">
 									<i class="fa fa-pencil"></i>
 								</a>
-								<a href="<?php echo base_url('product/del/' . $category->cat_id) ;?>" onClick="return confirm('คุณต้องการลบข้อมูลนี้?');" class="btn btn-danger btn-xs">
+								<a href="<?php echo base_url('product/category/del/' . $category->cat_id) ;?>" onClick="return confirm('คุณต้องการลบข้อมูลนี้?');" class="btn btn-danger btn-xs">
 									<i class="fa fa-trash"></i>
 								</a>
 							</td>

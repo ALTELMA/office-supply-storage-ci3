@@ -211,7 +211,7 @@ class Product extends MY_Controller{
 					$resize = $product->assetFullPic;
 				}
 
-				$this->productModel->assetUpdate($product->id, $thumb, $resize);
+				$this->productModel->assetUpdate($id, $thumb, $resize);
 				redirect('product/listing', 'refresh');
 			}
 
@@ -281,16 +281,14 @@ class Product extends MY_Controller{
 				$categoryObj = $this->productModel->getDataRow('category', 'cat_id', $id);
 				$subCatList = $this->productModel->getDataList('sub_category', $cond);
 
-				$data['title'] = 'รายละเอียดประเภทครุภัณฑ์';
-				$data['userID'] = $session_data['user_id'];
-				$data['name'] = $session_data['name'];
-				$data['categoryData'] = $categoryObj;
-				$data['subCategoryResult'] = $subCatList;
+				$this->data['title'] = 'รายละเอียดประเภทครุภัณฑ์';
+				$this->data['userID'] = $session_data['user_id'];
+				$this->data['name'] = $session_data['name'];
+				$this->data['categoryData'] = $categoryObj;
+				$this->data['subCategoryResult'] = $subCatList;
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/userPanel', $data);
-				$this->load->view('asset_cat_detail', $data);
-				$this->load->view('templates/footer', $data);
+				$this->content = 'category/detail';
+				$this->layout();
 			}
 
 		} elseif($page == 'add') {
@@ -301,14 +299,12 @@ class Product extends MY_Controller{
 			}
 
 			// CONFIG DATA SEND TO VIEW
-			$data['title'] = 'เพิ่มข้อมูลประเภทของทรัพย์สินและครุภัณฑ์';
-			$data['userID'] = $session_data['user_id'];
-			$data['name'] = $session_data['name'];
+			$this->data['title'] = 'เพิ่มข้อมูลประเภทของทรัพย์สินและครุภัณฑ์';
+			$this->data['userID'] = $session_data['user_id'];
+			$this->data['name'] = $session_data['name'];
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/userPanel', $data);
-			$this->load->view('asset_cat_add', $data);
-			$this->load->view('templates/footer', $data);
+			$this->content = 'category/add';
+			$this->layout();
 
 		// EDIT ASSET CATEGORY
 		} elseif($page == 'edit') {
@@ -316,7 +312,7 @@ class Product extends MY_Controller{
 			if(!empty($id)){
 
 				// LOAD CATEGORY DATA
-				$categoryObj = $this->productModel->getDataRow('category', 'cat_id', $id);
+				$category = $this->productModel->getDataRow('category', 'cat_id', $id);
 
 				if($this->input->post('submit')){
 					$this->productModel->categoryUpdate($id);
@@ -324,16 +320,14 @@ class Product extends MY_Controller{
 				}
 
 				// CONFIG DATA SEND TO VIEW
-				$data['title'] = 'เพิ่มข้อมูลประเภทของทรัพย์สินและครุภัณฑ์';
-				$data['userID'] = $session_data['user_id'];
-				$data['name'] = $session_data['name'];
-				$data['categoryData'] = $categoryObj;
+				$this->data['title'] = 'เพิ่มข้อมูลประเภทของทรัพย์สินและครุภัณฑ์';
+				$this->data['userID'] = $session_data['user_id'];
+				$this->data['name'] = $session_data['name'];
+				$this->data['category'] = $category;
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/userPanel', $data);
-				$this->load->view('asset_cat_edit', $data);
-				$this->load->view('templates/footer', $data);
-				}
+				$this->content = 'category/edit';
+				$this->layout();
+			}
 
 		// DEL ASSET CATEGORY
 		} elseif($page == 'del') {
@@ -351,58 +345,74 @@ class Product extends MY_Controller{
 		// LOAD SESSION DATA
 		$session_data = $this->session->userdata('userLogData');
 
-		if($page == 'add'){
+		if($page == NULL || $page == 'list') {
+
+			// LOAD DATA FROM DATABASE
+			$categories = $this->productModel->getDataList('sub_category');
+
+			$this->data['title'] = 'หมวดหมู่ของทรัพย์สินและครุภัณฑ์';
+			$this->data['userID'] = $session_data['user_id'];
+			$this->data['name'] = $session_data['name'];
+			$this->data['categories'] = $categories;
+
+			$this->content = 'subcategory/list';
+			$this->layout();
+
+		// EDIT ASSET SUB CATEGORY DATA
+		} elseif($page == 'add') {
+
+			$categoryList = $this->productModel->getDataList('category');
+
 			if($this->input->post('submit')){
-				$this->assetModel->subCategoryAdd($id);
-				redirect('asset/category/view/'.$id);
+				$this->productModel->subCategoryAdd();
+				redirect('product/subcategory/', 'refresh');
 			}
 
 			// CONFIG DATA SEND TO VIEW
-			$data['title'] = 'เพิ่มข้อมูลประเภทย่อยของทรัพย์สินและครุภัณฑ์';
-			$data['userID'] = $session_data['user_id'];
-			$data['name'] = $session_data['name'];
+			$this->data['title'] = 'เพิ่มข้อมูลหมวดหมู่ของทรัพย์สินและครุภัณฑ์';
+			$this->data['categoryList'] = $categoryList;
+			$this->data['userID'] = $session_data['user_id'];
+			$this->data['name'] = $session_data['name'];
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/userPanel', $data);
-			$this->load->view('asset_subcat_add', $data);
-			$this->load->view('templates/footer', $data);
+			$this->content = 'subcategory/add';
+			$this->layout();
 
 		// EDIT ASSET SUB CATEGORY DATA
-		}elseif($page == 'edit'){
+		} elseif($page == 'edit') {
 
-			if(!empty($id)){
+			if(!empty($id)) {
 
 				// LOAD ASSET SUB CATEGORY DATA
-				$subCategoryObj = $this->assetModel->getDataRow('sub_category','id',$id);
+				$categoryList = $this->productModel->getDataList('category');
+				$subCategory = $this->productModel->getDataRow('sub_category', 'id', $id);
 
 				// EDIT ASSET SUB CATEGORY DATA
 				if($this->input->post('submit')){
-					$this->assetModel->subCategoryUpdate($id);
-					redirect('asset/category/view/'.$subCategoryObj->cat_id);
+					$this->productModel->subCategoryUpdate($id);
+					redirect('product/subcategory/edit/' . $subCategory->id);
 				}
 
 				// CONFIG DATA SEND TO VIEW
-				$data['title'] = 'เพิ่มข้อมูลประเภทย่อยของทรัพย์สินและครุภัณฑ์';
-				$data['userID'] = $session_data['user_id'];
-				$data['name'] = $session_data['name'];
-				$data['subCategoryData'] = $subCategoryObj;
+				$this->data['title'] = 'เพิ่มข้อมูลหมวดหมู่ของทรัพย์สินและครุภัณฑ์';
+				$this->data['categoryList'] = $categoryList;
+				$this->data['userID'] = $session_data['user_id'];
+				$this->data['name'] = $session_data['name'];
+				$this->data['subCategory'] = $subCategory;
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/userPanel', $data);
-				$this->load->view('asset_subcat_edit', $data);
-				$this->load->view('templates/footer', $data);
+				$this->content = 'subcategory/edit';
+				$this->layout();
 			}
 
 		// DELETE ASSET SUB CATEGORY DATA
-		}elseif($page == 'del'){
+		} elseif($page == 'del') {
 
 			if(!empty($id)){
 				// LOAD ASSET SUB CATEGORY DATA
-				$subCategoryObj = $this->assetModel->getDataRow('sub_category','id',$id);
-				$this->assetModel->delDataRow('sub_category','id', $id);
-				redirect('asset/category/view/'.$subCategoryObj->cat_id, 'refresh');
+				$subCategoryObj = $this->productModel->getDataRow('sub_category','id',$id);
+				$this->productModel->delDataRow('sub_category','id', $id);
+				redirect('product/subcategory/', 'refresh');
 			}
-			redirect('asset/category/', 'refresh');
+			redirect('product/category/', 'refresh');
 		}
 	}
 

@@ -19,17 +19,17 @@
         <div class="panel panel-default">
             <div class="panel-heading">เพิ่มข้อมูล</div>
             <div class="panel-body">
-                <?php echo form_open('product/category/add') ?>
+                <?php echo form_open('product/category/edit/' . $category->cat_id) ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>หมวดหมู่หลัก</label>
-                            <input id="txt_type" class="form-control" name="txt_type" placeholder="หมวดหมู่หลัก">
+                            <input id="txt_type" class="form-control" name="txt_type" value="<?php echo $category->catType ? : ''; ?>" placeholder="หมวดหมู่หลัก">
                             <p class="help-block">ตัวอย่าง A - โต๊ะ, B - โต๊ะ, C - โต๊ะ</p>
                         </div>
                         <div class="form-group">
                             <label>ชื่อประเภททรัพย์สิน</label>
-                            <input id="txt_category" class="form-control" name="txt_category" placeholder="ชื่อประเภททรัพย์สิน">
+                            <input id="txt_category" class="form-control" name="txt_category" value="<?php echo $category->catName ? : ''; ?>"placeholder="ชื่อประเภททรัพย์สิน">
                         </div>
                     </div>
                 </div>

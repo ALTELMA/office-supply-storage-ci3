@@ -398,22 +398,23 @@ class ProductModel extends CI_Model{
 	}
 
 	// ADD ASSET SUB CATEGORY
-	public function subCategoryAdd($id){
+	public function subCategoryAdd(){
 
-		$dataInsert = array(
-					'cat_id' => $id,
-					'subTypeName' => $this->input->post('txt_subcategory')
-					);
-		$this->db->insert('sub_category',$dataInsert);
+		$dataInsert = [
+			'cat_id' => $this->input->post('assetCat'),
+			'subTypeName' => $this->input->post('txt_subcategory')
+		];
+		$this->db->insert('sub_category', $dataInsert);
 	}
 
 	public function subCategoryUpdate($id){
 
 		$cond = array('id' => $id);
-		$dataUpdate = array(
-						'subTypeName' => $this->input->post('txt_subcategory'),
-					);
-		$this->db->update('sub_category',$dataUpdate,$cond);
+		$dataUpdate = [
+			'cat_id' => $this->input->post('assetCat'),
+			'subTypeName' => $this->input->post('txt_subcategory')
+		];
+		$this->db->update('sub_category', $dataUpdate, $cond);
 	}
 
 }

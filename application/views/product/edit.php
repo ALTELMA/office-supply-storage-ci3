@@ -39,9 +39,9 @@
                         <div class="form-group">
                             <label>ประเภทย่อยของทรัพย์สิน</label>
                             <select id="assetSubCat" class="form-control" name="assetSubCat">
-                                <option value="">เลือกประเภทย่อยของทรัพย์สิน</option>
+                                <option value="">เลือกหมวดหมู่ของทรัพย์สิน</option>
                             <?php foreach($subCategoryResult as $subCategoryData): ?>
-                                <option value="<?php echo $subCategoryData->cat_id; ?>" <?php echo $subCategoryData->id == $product->sub_cat_id ? "selected" : ''; ?>><?php echo $subCategoryData->subTypeName; ?></option>
+                                <option value="<?php echo $subCategoryData->id; ?>" <?php echo $subCategoryData->id == $product->sub_cat_id ? "selected" : ''; ?>><?php echo $subCategoryData->subTypeName; ?></option>
                             <?php endforeach; ?>
                             </select>
                         </div>
