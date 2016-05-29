@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">เพิ่มข้อมูล</div>
             <div class="panel-body">
-                <?php echo form_open('product/edit') ?>
+                <?php echo form_open('product/edit/' . $product->id) ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -62,12 +62,21 @@
                             <input id="txt_value" class="form-control" name="txt_value" value="<?php echo $product->value ? : ''; ?>" placeholder="ราคาทรัพย์สิน">
                         </div>
                         <div class="form-group">
+                            <label>สถานะทรัพย์สิน</label>
+                            <select id="txt_status" class="form-control" name="txt_status">
+                                <option value="">เลือกสถานะทรัพย์สิน</option>
+                            <?php foreach($statusResult as $statusData): ?>
+                                <option value="<?php echo $statusData->status_id; ?>" <?php echo $statusData->status_id == $product->status ? "selected" : ''; ?>><?php echo $statusData->statusName; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>การอนุมัติข้อมูล</label>
                             <label class="radio-inline">
-                                <input type="radio" name="IsApproved" value="1"> อนุมัติ
+                                <input type="radio" name="IsApproved" value="1" <?php echo !empty($product->IsApproved) && $product->IsApproved == 1 ? 'checked' : ''; ?>> อนุมัติ
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="IsApproved" value="0"> ไม่อนุมัติ
+                                <input type="radio" name="IsApproved" value="0" <?php echo empty($product->IsApproved) ? 'checked' : ''; ?>> ไม่อนุมัติ
                             </label>
                         </div>
                     </div>
@@ -93,9 +102,13 @@
                             <select id="txt_department" class="form-control" name="txt_department">
                                 <option value="">เลือกแผนกผู้รับผิดชอบ</option>
                             <?php foreach($departmentResult as $departmentData): ?>
-                                <option value="<?php echo $departmentData->department_id; ?>"><?php echo $departmentData->departmentName; ?></option>
+                                <option value="<?php echo $departmentData->department_id; ?>" <?php echo $departmentData->department_id == $product->responseDepartment ? "selected" : ''; ?>><?php echo $departmentData->departmentName; ?></option>
                             <?php endforeach; ?>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ที่เก็บ/สถานที่ตั้งทรัพย์สิน</label>
+                            <input id="txt_location" class="form-control" name="txt_location" value="<?php echo $product->locationStorage ? : ''; ?>" placeholder="ที่เก็บ/สถานที่ตั้งทรัพย์สิน">
                         </div>
                         <div class="form-group">
                             <label>หมายเหตุ</label>

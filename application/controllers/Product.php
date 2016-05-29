@@ -109,7 +109,8 @@ class Product extends MY_Controller{
 		$statusList = $this->productModel->getDataList('asset_status');
 		$departmentList = $this->productModel->getDataList('department');
 
-		if($this->input->post('asset_add') != NULL) {
+		$thumb = $resize = '';
+		if($this->input->post('asset_add') != null) {
 
 			// CONFIG DESTINATION PATH
 			$thumbPath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/thumb';
@@ -118,19 +119,21 @@ class Product extends MY_Controller{
 			$resizeName = 'asset_cover_resize'.date('YmdHis');
 
 			// THUMB IMAGE 100x100
-			if($_FILES['asset_img']['tmp_name']) {
-				$thumb = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $thumbPath, $thumbName, 'gif', 100);
-			} else {
-				$thumb = '';
-				$this->myupload->error = '';
-			}
+			if (isset($_FILES['asset_img'])) {
+				if($_FILES['asset_img']['tmp_name']) {
+					$thumb = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $thumbPath, $thumbName, 'gif', 100);
+				} else {
+					$thumb = '';
+					$this->myupload->error = '';
+				}
 
-			// RESIZE IMAGE 400x400
-			if($_FILES['asset_img']['tmp_name']) {
-				$resize = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $resizePath, $resizeName, 'gif', 400);
-			} else {
-				$resize = '';
-				$this->myupload->error = '';
+				// RESIZE IMAGE 400x400
+				if($_FILES['asset_img']['tmp_name']) {
+					$resize = $this->myupload->imgUploadRatioY($_FILES['asset_img'], $resizePath, $resizeName, 'gif', 400);
+				} else {
+					$resize = '';
+					$this->myupload->error = '';
+				}
 			}
 
 			// INSERT DATA
@@ -177,8 +180,8 @@ class Product extends MY_Controller{
 			$this->data['product'] = $product;
 
 			// DO ACTION EDIT WHEN SUBMIT
-			if($this->input->post('asset_edit') != NULL) {
-
+			if($this->input->post('asset_edit') != null) {
+				$thumb = $resize = '';
 				if(!empty($_FILES['asset_img']['tmp_name'])) {
 					// CONFIG DESTINATION PATH
 					$thumbPath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/thumb';
@@ -208,14 +211,14 @@ class Product extends MY_Controller{
 					$resize = $product->assetFullPic;
 				}
 
-				$this->productModel->assetUpdate($id,$thumb,$resize);
+				$this->productModel->assetUpdate($product->id, $thumb, $resize);
 				redirect('product/listing', 'refresh');
 			}
 
 			// LOAD PAGE
 			$this->content = 'product/edit';
 			$this->layout();
-		}else{
+		} else {
 			redirect('product/listing', 'refresh');
 		}
 	}
@@ -224,13 +227,12 @@ class Product extends MY_Controller{
 	public function verify($id){
 
 		if(!empty($id)){
-
 			// LOAD DATA
-			$assetObj = $this->productModel->getDataRow('asset','id',$id);
-			$approveData = empty($assetObj->IsApproved)?1:0;
+			$assetObj = $this->productModel->getDataRow('asset','id', $id);
+			$approveData = empty($assetObj->IsApproved)? 1 : 0 ;
 
 			$updateData = array('IsApproved' => $approveData);
-			$this->productModel->updateData('asset',$updateData,'id',$id);
+			$this->productModel->updateData('asset', $updateData, 'id', $id);
 			redirect('product/listing','refresh');
 		}else{
 			redirect('product/listing','refresh');
@@ -240,7 +242,8 @@ class Product extends MY_Controller{
 	// ASSET DELETE DATA
 	public function del($id){
 
-		if(!empty($id)){
+		if(!empty($id))
+		{
 			$this->productModel->assetDelete($id);
 			redirect('product/listing', 'refresh');
 		}else{
@@ -585,8 +588,6 @@ class Product extends MY_Controller{
 	// ==================================================================
 	//  AJAX FUNCTION TO LOAD DYNAMIC DATA TO PAGE
 	// ==================================================================
-	//
-
 	public function ajax(){
 
 		$callData = $this->input->post('req');

@@ -68,9 +68,9 @@
 							</td>
 							<td>
 								<?php if($product->status == 1): ?>
-									<?php echo'<span class=\'text-success\'>' . $product->statusName . '</span>'; ?>
+									<?php echo "<span class='label label-success'>" . $product->statusName . "</span>"; ?>
 								<?php else: ?>
-									<?php echo'<span class=\'text-danger\'>' . $product->statusName . '</span>'; ?>
+									<?php echo "<span class='label label-danger'>" . $product->statusName . "</span>"; ?>
 								<?php endif ?>
 							</td>
 							<td>
@@ -81,9 +81,15 @@
 								<?php endif ?>
 							</td>
 							<td align="center">
-								<a href="<?php echo base_url('product/verify/' . $product->id ); ?>" class="btn btn-success btn-xs">
-									<i class="fa fa-check"></i>
+								<?php if($product->IsApproved == 1): ?>
+									<a href="<?php echo base_url('product/verify/' . $product->id ); ?>" class="btn btn-success btn-xs">
+										<i class="fa fa-check"></i>
+									</a>
+								<?php else: ?>
+									<a href="<?php echo base_url('product/verify/' . $product->id ); ?>" class="btn btn-danger btn-xs">
+									<i class="fa fa-exclamation-triangle"></i>
 								</a>
+								<?php endif ?>
 								<a href="<?php echo base_url('product/edit/' . $product->id ); ?>" class="btn btn-warning btn-xs">
 									<i class="fa fa-pencil"></i>
 								</a>

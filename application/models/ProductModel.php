@@ -194,17 +194,18 @@ class ProductModel extends CI_Model{
 	// GET ASSET DATA ROW
 	public function getAssetRow($id){
 
-		if(!empty($id)){
+		if(!empty($id)) {
 			$cond = array('id' => $id);
-			$this->db->select()->from('asset');
-			$this->db->join('asset_status', 'asset.status = asset_status.status_id', 'left outer');
-			$this->db->join('department', 'asset.responseDepartment = department.department_id', 'left outer');
-			$this->db->where($cond);
+			$this->db->select()->from('asset')
+			->join('asset_status', 'asset.status = asset_status.status_id', 'left')
+			->join('department', 'asset.responseDepartment = department.department_id', 'left')
+			->where($cond);
+
 			$query = $this->db->get();
 
-			if($query->num_rows() == 1){
+			if($query->num_rows() == 1) {
 				return $query->row();
-			}else{
+			} else {
 				return FALSE;
 			}
 		}
@@ -262,7 +263,7 @@ class ProductModel extends CI_Model{
 	}
 
 	// UPDATE ASSET DATA
-	public function assetUpdate($id,$thumb,$resize){
+	public function assetUpdate($id, $thumb, $resize){
 
 		// CONFIG ABOUT DATE
 		$date = date('Y-m-d H:i:s');
@@ -288,27 +289,28 @@ class ProductModel extends CI_Model{
 
 		// UPDATE COND
 		$updateCond = array('id' => $id);
-		$updateData = array(
-						'cat_id' => $cat_id,
-						'sub_cat_id' => $subCat_id,
-						'assetThumbPic' => $thumb,
-						'assetFullPic' => $resize,
-						'code' => $assetCode,
-						'detail' => $detail,
-						'value' => $value,
-						'soldDate' => $soldDate,
-						'warrantyStartDate' => $warrantyStart,
-						'warrantyEndDate' => $warrantyEnd,
-						'responseUser' => $responseUser,
-						'responseDepartment' => $responseDepartment,
-						'locationStorage' => $locationStorage,
-						'status' => $status,
-						'IsApproved' => $IsApproved,
-						'updateDate' => $date,
-						'remark' => $remark
-					);
+		$updateData = [
+			'cat_id' => $cat_id,
+			'sub_cat_id' => $subCat_id,
+			'assetThumbPic' => $thumb,
+			'assetFullPic' => $resize,
+			'code' => $assetCode,
+			'detail' => $detail,
+			'value' => $value,
+			'soldDate' => $soldDate,
+			'warrantyStartDate' => $warrantyStart,
+			'warrantyEndDate' => $warrantyEnd,
+			'responseUser' => $responseUser,
+			'responseDepartment' => $responseDepartment,
+			'locationStorage' => $locationStorage,
+			'status' => $status,
+			'IsApproved' => $IsApproved,
+			'updateDate' => $date,
+			'remark' => $remark
+		];
+
 		// UPDATE DATA
-		$this->db->update('asset',$updateData,$updateCond);
+		$this->db->update('asset', $updateData, $updateCond);
 	}
 
 	// DELETE ASSET DATA

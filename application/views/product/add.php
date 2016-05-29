@@ -60,6 +60,15 @@
                             <input id="txt_value" class="form-control" name="txt_value" placeholder="ราคาทรัพย์สิน">
                         </div>
                         <div class="form-group">
+                            <label>สถานะทรัพย์สิน</label>
+                            <select id="txt_status" class="form-control" name="txt_status">
+                                <option value="">เลือกสถานะทรัพย์สิน</option>
+                            <?php foreach($statusResult as $statusData): ?>
+                                <option value="<?php echo $statusData->status_id; ?>"><?php echo $statusData->statusName; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>การอนุมัติข้อมูล</label>
                             <label class="radio-inline">
                                 <input type="radio" name="IsApproved" value="1"> อนุมัติ
@@ -94,6 +103,10 @@
                                 <option value="<?php echo $departmentData->department_id; ?>"><?php echo $departmentData->departmentName; ?></option>
                             <?php endforeach; ?>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ที่เก็บ/สถานที่ตั้งทรัพย์สิน</label>
+                            <input id="txt_location" class="form-control" name="txt_location" placeholder="ที่เก็บ/สถานที่ตั้งทรัพย์สิน">
                         </div>
                         <div class="form-group">
                             <label>หมายเหตุ</label>
