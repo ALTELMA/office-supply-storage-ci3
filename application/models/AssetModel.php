@@ -25,7 +25,7 @@ class AssetModel extends CI_Model{
 
 		$query = $this->db->get();
 
-		if($query->num_rows >= 1){
+		if($query->num_rows() >= 1){
 			return $query->result();
 		}else{
 			return FALSE;
@@ -41,7 +41,7 @@ class AssetModel extends CI_Model{
 
 		$query = $this->db->get();
 
-		if($query->num_rows >= 1){
+		if($query->num_rows() >= 1){
 			return $query->result();
 		}else{
 			return FALSE;
@@ -58,7 +58,7 @@ class AssetModel extends CI_Model{
 
 		$query = $this->db->get();
 
-		if($query->num_rows >= 1){
+		if($query->num_rows() >= 1){
 			return $query->result();
 		}else{
 			return FALSE;
