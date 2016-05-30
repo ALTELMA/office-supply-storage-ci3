@@ -51,7 +51,7 @@
 				// THUMB
 				if(!empty($assetData->assetFullPic)){
 					$assetThumb = array(
-								'src' => base_url().'assets/img/asset_image/thumb/'.$assetData->assetThumbPic,
+								'src' => base_url().'assets/images/asset_image/thumb/'.$assetData->assetThumbPic,
 								'width' => 100,
 								'height' => 100,
 								'alt' => 'asset_thumb_pic',
