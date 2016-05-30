@@ -46,7 +46,7 @@
 					}else{
 						$previewImg = array(
 									'class' => 'border',
-									'src' => base_url().'assets/images/templates/no_image.gif',
+									'src' => base_url().'assets/img/templates/no_image.gif',
 									'width' => 400,
 									'height' => 400,
 									'alt' => 'preview_asset_image'
