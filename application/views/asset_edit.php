@@ -38,7 +38,7 @@
 					if(!empty($assetData->assetFullPic)){
 						$previewImg = array(
 									'class' => 'border',
-									'src' => base_url().'assets/img/asset_image/resize/'.$assetData->assetFullPic,
+									'src' => base_url().'assets/images/asset_image/resize/'.$assetData->assetFullPic,
 									'width' => 400,
 									'height' => 400,
 									'alt' => 'preview_asset_image'
@@ -46,7 +46,7 @@
 					}else{
 						$previewImg = array(
 									'class' => 'border',
-									'src' => base_url().'assets/img/templates/no_image.gif',
+									'src' => base_url().'assets/images/templates/no_image.gif',
 									'width' => 400,
 									'height' => 400,
 									'alt' => 'preview_asset_image'
