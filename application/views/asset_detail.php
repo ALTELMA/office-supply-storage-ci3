@@ -15,7 +15,7 @@
         	// LOAD IMAGE
 			if(!empty($assetData->assetFullPic)){
 				$assetImage = array(
-							'src' => base_url().'assets/img/asset_image/resize/'.$assetData->assetFullPic,
+							'src' => base_url().'assets/images/asset_image/resize/'.$assetData->assetFullPic,
 							'width' => 400,
 							'height' => 400,
 							'alt' => 'asset_resize_pic',
