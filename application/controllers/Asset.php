@@ -653,7 +653,7 @@ class Asset extends CI_controller{
 			$session_data = $this->session->userdata('searchData');
 			$cat_id = $session_data['category_id'];
 
-			$cat_id = mysql_real_escape_string($this->input->post('cat_id'));
+			$cat_id = $this->input->post('cat_id');
 			$cond = array('cat_id' => $cat_id);
 			$subCategoryList = $this->assetModel->getDataList('sub_category',$cond);
 
