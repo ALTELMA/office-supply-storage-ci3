@@ -7,10 +7,7 @@
                 <i class="fa fa-dashboard"></i> <a href="<?php echo base_url('dashboard/index'); ?>">แดชบอร์ด</a>
             </li>
             <li class="active">
-                <i class="fa fa-cube"></i> <a href="<?php echo base_url('product/listing'); ?>">รายการทรัพย์สิน</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-pencil"></i> <?php echo $title; ?>
+                <i class="fa fa-user"></i> <?php echo $title; ?>
             </li>
         </ol>
     </div>
@@ -44,15 +41,15 @@
                     <tbody>
                         <tr>
                             <td>ชื่อผู้ใช้</td>
+                            <td><?php echo $user->username; ?></td>
+                        </tr>
+                        <tr>
+                            <td>ชื่อ-นามสกุล</td>
                             <td><?php echo $user->name; ?></td>
                         </tr>
                         <tr>
-                            <td>ชื่อผู้ใช้</td>
-                            <td><?php echo $user->name; ?></td>
-                        </tr>
-                        <tr>
-                            <td>วันที่ลงทะเบียน</td>
-                            <td><?php echo $user->name; ?></td>
+                            <td>วันที่ล็อคอินล่าสุด</td>
+                            <td><?php echo $this->mydatesystem->Thaidate($user->lastLoginDate, 2); ?></td>
                         </tr>
                     </tbody>
                 </table>

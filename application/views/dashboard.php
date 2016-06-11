@@ -85,11 +85,11 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="fa fa-support fa-5x"></i>
+                        <i class="fa fa-money fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge"><?php echo $product_count; ?></div>
-                        <div>Support Tickets!</div>
+                        <div class="huge"><?php echo number_format($product_value); ?></div>
+                        <div>มูลค่าทรัพย์สินทั้งหมด</div>
                     </div>
                 </div>
             </div>
@@ -103,9 +103,8 @@
         </div>
     </div>
 </div>
-<!-- /.row -->
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -117,7 +116,6 @@
         </div>
     </div>
 </div>
-<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-4">
@@ -253,5 +251,4 @@
             </div>
         </div>
     </div>
-</div>
-<!-- /.row -->
+</div> -->

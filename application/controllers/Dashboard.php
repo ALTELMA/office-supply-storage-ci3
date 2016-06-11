@@ -28,6 +28,7 @@ class Dashboard extends MY_Controller{
 			$this->data['product_count'] = $this->productModel->getDataCount('asset') ? : 0;
 			$this->data['category_count'] = $this->productModel->getDataCount('category') ? : 0;
 			$this->data['subcategory_count'] = $this->productModel->getDataCount('sub_category') ? : 0;
+			$this->data['product_value'] = $this->productModel->getDataValue('asset') ? : 0;
 			$this->content = 'dashboard';
 			$this->layout();
 		}

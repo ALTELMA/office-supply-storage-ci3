@@ -9,6 +9,10 @@ class User extends MY_Controller{
 
 		// LOAD MODEL
 		$this->load->model('userModel', '', TRUE);
+
+		// LOAD LIBRARY
+		$this->load->library('MyUpload');
+		$this->load->library('MyDateSystem');
 	}
 
 	public function index()
@@ -59,6 +63,42 @@ class User extends MY_Controller{
 		$this->data['user'] = $user;
 		$this->content = 'user/detail';
 		$this->layout();
+	}
+
+	public function edit($id)
+	{
+		$user = $this->userModel->getUserData($this->session->userdata('userLogData')['user_id']);
+
+		$this->data['title'] = 'แก้ไขข้อมูลผู้ใช้งานระบบ';
+		$this->data['user'] = $user;
+		$this->content = 'user/edit';
+		$this->layout();
+	}
+
+	public function update($id)
+	{
+		$this->userModel->update($this->input->post(), $id);
+
+		redirect('user/view/' . $id, 'refresh');
+	}
+
+	public function password($id)
+	{
+		$user = $this->userModel->getUserData($this->session->userdata('userLogData')['user_id']);
+
+		$this->data['title'] = 'เปลี่ยนรหัสผ่าน';
+		$this->data['user'] = $user;
+		$this->content = 'user/password';
+		$this->layout();
+	}
+
+	public function updatePassword($id)
+	{
+		if($this->userModel->updatePassword($this->input->post(), $id)) {
+			redirect('user/view/' . $id, 'refresh');
+		} else {
+			redirect('user/password/' . $id, 'refresh');
+		}
 	}
 }
 

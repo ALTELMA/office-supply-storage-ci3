@@ -417,5 +417,13 @@ class ProductModel extends CI_Model{
 		$this->db->update('sub_category', $dataUpdate, $cond);
 	}
 
+	public function getDataValue($id)
+	{
+		$products = $this->db->select_sum('value')->get('asset');
+		$totalValue = $products->row();
+
+		return $totalValue->value;
+	}
+
 }
 ?>

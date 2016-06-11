@@ -55,6 +55,41 @@ class UserModel extends CI_Model{
 		}
 	}
 
+	public function update($inputs, $id)
+	{
+		$data = [
+			'username' => $inputs['txt_username'],
+			'name' => $inputs['txt_name']
+		];
+
+		$this->db->update('users', $data, ['user_id' => $id]);
+	}
+
+	public function updatePassword($inputs, $id)
+	{
+		$user = $this->getUserData($id);
+
+		if ($user->password == md5($inputs['txt_current_password'])) {
+			if (!empty($inputs['txt_new_password']) && $inputs['txt_new_password'] == $inputs['txt_confirm_password']) {
+				$data = [
+					'password' => md5($inputs['txt_new_password']),
+					'password_format' => $inputs['txt_new_password']
+				];
+
+				$this->db->update('users', $data, ['user_id' => $id]);
+			} else {
+
+				$this->session->set_userdata('error', 'รหัสผ่านไม่ตรงกัน');
+
+				return false;
+			}
+		} else {
+			$this->session->set_userdata('error', 'รหัสผ่านไม่ถูกต้อง');
+
+			return false;
+		}
+	}
+
 }
 
 /* End of file userModel.php */

@@ -12,7 +12,6 @@ class Product extends MY_Controller{
 
 		// LOAD LIBRARY
 		$this->load->library('MyUpload');
-		$this->load->library('pagination');
 		$this->load->library('MyDateSystem');
 		$this->load->library('MyExcel');
 	}
