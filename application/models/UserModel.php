@@ -43,13 +43,13 @@ class UserModel extends CI_Model{
 	}
 
 	// GET USER SINGLE DATA
-	public function getUserData($id){
-
-		$this->db->select()->from('users')->where('user_id = \''.$id.'\'')->limit(1);
+	public function getUserData($id)
+	{
+		$this->db->select()->from('users')->where(['user_id' => $id])->limit(1);
 		$query = $this->db->get();
 
 		if($query->num_rows() == 1){
-			return $query->result();
+			return $query->row();
 		}else{
 			return FALSE;
 		}

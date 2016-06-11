@@ -345,7 +345,7 @@ class ProductModel extends CI_Model{
 					'asset_id' => $this->uri->segment(4),
 					'fileName' => $this->input->post('txt_filename'),
 					'filePath' => $attach,
-					'remark' => $this->input->post('remark')
+					'remark' => $this->input->post('txt_remark')
 					);
 		$this->db->insert('asset_attachment',$insertData);
 	}
@@ -358,7 +358,7 @@ class ProductModel extends CI_Model{
 					'asset_id' => $asset_id,
 					'fileName' => $this->input->post('txt_filename'),
 					'filePath' => $attach,
-					'remark' => $this->input->post('remark')
+					'remark' => $this->input->post('txt_remark')
 					);
 		$this->db->update('asset_attachment',$updateData, $cond);
 	}
@@ -374,7 +374,7 @@ class ProductModel extends CI_Model{
 
 		$delCond = array('id' => $id);
 		$this->db->delete('asset_attachment',$delCond);
-		redirect('asset/view/'.$attachData->asset_id,'refresh');
+		redirect('product/view/'.$attachData->asset_id,'refresh');
 	}
 
 	// ADD ASSET CATEGORY

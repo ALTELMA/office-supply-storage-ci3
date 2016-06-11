@@ -90,6 +90,9 @@
 									<i class="fa fa-exclamation-triangle"></i>
 								</a>
 								<?php endif ?>
+								<a href="<?php echo base_url('product/view/' . $product->id ); ?>" class="btn btn-info btn-xs">
+									<i class="fa fa-eye"></i>
+								</a>
 								<a href="<?php echo base_url('product/edit/' . $product->id ); ?>" class="btn btn-warning btn-xs">
 									<i class="fa fa-pencil"></i>
 								</a>

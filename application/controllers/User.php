@@ -1,6 +1,6 @@
 <?php if(!defined('BASEPATH'))exit('No direct script access allowed');
 
-class User extends CI_Controller{
+class User extends MY_Controller{
 
 	public function __construct()
 	{
@@ -29,11 +29,11 @@ class User extends CI_Controller{
 		if($result) {
 			$sess_array = array();
 			foreach($result as $row) {
-				$sess_array = array(
-							'user_id' => $row->user_id,
-							'username' => $row->username,
-							'name' => $row->name
-							);
+				$sess_array = [
+					'user_id' => $row->user_id,
+					'username' => $row->username,
+					'name' => $row->name
+				];
 				$this->userModel->userLoginUpdate($row->user_id);
 			}
 
@@ -51,18 +51,14 @@ class User extends CI_Controller{
 		redirect('product', 'refresh');
 	}
 
-	// ==================================================================
-	// PAGE
-	// ==================================================================
-
 	public function view($id)
 	{
+		$user = $this->userModel->getUserData($this->session->userdata('userLogData')['user_id']);
 
-		$data['title'] = 'ข้อมูลผู้ใช้งานระบบ';
-
-		$this->load->view('templates/header',$data);
-		$this->load->view('users/user_detail',$data);
-		$this->load->view('templates/footer',$data);
+		$this->data['title'] = 'ข้อมูลผู้ใช้งานระบบ';
+		$this->data['user'] = $user;
+		$this->content = 'user/detail';
+		$this->layout();
 	}
 }
 

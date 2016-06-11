@@ -73,27 +73,24 @@ class Product extends MY_Controller{
 	}
 
 	// VIEW ASSET DETAIL
-	public function view($id = NULL)
+	public function view($id = null)
 	{
 		// LOAD SESSION DATA
 		$session_data = $this->session->userdata('userLogData');
 
 		// LOAD ASSET DATA AND SEND TO PAGE
-		$assetData = $this->assetModel->getAssetRow($id);
+		$product = $this->productModel->getAssetRow($id);
 		$cond = array('asset_id' => $id);
-		$attachObj = $this->assetModel->getDataList('asset_attachment',$cond);
+		$attachObj = $this->productModel->getDataList('asset_attachment', $cond);
 
-		$data['title'] = 'รายละเอียดข้อมูลคุรภัณฑ์';
-		$data['userID'] = $session_data['user_id'];
-		$data['name'] = $session_data['name'];
-		$data['assetData'] = $assetData;
-		$data['attachList'] = $attachObj;
+		$this->data['title'] = 'รายละเอียดข้อมูลคุรภัณฑ์';
+		$this->data['userID'] = $session_data['user_id'];
+		$this->data['name'] = $session_data['name'];
+		$this->data['product'] = $product;
+		$this->data['attachList'] = $attachObj;
 
-		// LOAD PAGE
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/userPanel', $data);
-		$this->load->view('asset_detail', $data);
-		$this->load->view('templates/footer', $data);
+		$this->content = 'product/detail';
+		$this->layout();
 	}
 
 	// ADD ASSET DATA
@@ -417,7 +414,7 @@ class Product extends MY_Controller{
 	}
 
 	// ASSET ATTACH FILE
-	public function attach($page = NULL, $id = NULL){
+	public function attach($page = null, $id = null){
 
 		if($page == 'add'){
 			if(!empty($id)){
@@ -425,33 +422,29 @@ class Product extends MY_Controller{
 				// LOAD SESSION DATA
 				$session_data = $this->session->userdata('userLogData');
 
-				if($this->input->post('submit') != NULL){
-
+				if($this->input->post('submit') != null){
 					if($_FILES['uploadFile']['tmp_name']){
-
-						$Path = str_replace(SELF,'',FCPATH).'assets/upload';
+						$path = str_replace(SELF,'',FCPATH).'assets/upload';
 						$fileName = rand(000000,999999).date('YmdHis');
-						$attach = $this->myupload->uploadFile($_FILES['uploadFile'],$Path,$fileName);
+						$attach = $this->myupload->uploadFile($_FILES['uploadFile'], $path, $fileName);
 					}else{
 						$attach = '';
 					}
 
-					$this->assetModel->assetAttachAdd($attach);
-					redirect('asset/view/'.$id,'refresh');
+					$this->productModel->assetAttachAdd($attach);
+					redirect('product/view/' . $id, 'refresh');
 				}
 
 				// CONFIG DATA SEND TO PAGE
-				$data['title'] = 'เพิ่มไฟล์สำหรับครุภัณฑ์';
-				$data['userID'] = $session_data['user_id'];
-				$data['name'] = $session_data['name'];
+				$this->data['title'] = 'เพิ่มไฟล์สำหรับครุภัณฑ์';
+				$this->data['userID'] = $session_data['user_id'];
+				$this->data['name'] = $session_data['name'];
+				$this->data['product'] = $this->productModel->getDataRow('asset', 'id', $id);
 
-				// LOAD PAGE
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/userPanel', $data);
-				$this->load->view('asset_attach_add', $data);
-				$this->load->view('templates/footer', $data);
+				$this->content = 'product/attach_add';
+				$this->layout();
 			}else{
-				redirect('asset','refresh');
+				redirect('product/listing','refresh');
 			}
 
 		// ATTACH EDIT
@@ -462,7 +455,7 @@ class Product extends MY_Controller{
 				$session_data = $this->session->userdata('userLogData');
 
 				// LOAD ASSET ATTACH DATA
-				$attachObj = $this->assetModel->getDataRow('asset_attachment','id',$id);
+				$attachObj = $this->productModel->getDataRow('asset_attachment','id',$id);
 
 				if($this->input->post('submit') != NULL){
 					if($_FILES['uploadFile']['tmp_name']){
@@ -473,26 +466,25 @@ class Product extends MY_Controller{
 						$attach = $attachObj->filePath;
 					}
 
-					$this->assetModel->assetAttachUpdate($id,$attachObj->asset_id,$attach);
-					redirect('asset/view/'.$attachObj->asset_id,'refresh');
+					$this->productModel->assetAttachUpdate($id,$attachObj->asset_id,$attach);
+					redirect('product/view/'.$attachObj->asset_id,'refresh');
 				}
 
 				// CONFIG DATA SEND TO PAGE
-				$data['title'] = 'แก้ไขไฟล์สำหรับครุภัณฑ์';
-				$data['userID'] = $session_data['user_id'];
-				$data['name'] = $session_data['name'];
-				$data['attachData'] = $attachObj;
+				$this->data['title'] = 'แก้ไขไฟล์สำหรับครุภัณฑ์';
+				$this->data['userID'] = $session_data['user_id'];
+				$this->data['name'] = $session_data['name'];
+				$this->data['attachData'] = $attachObj;
+				$this->data['product'] = $this->productModel->getDataRow('asset', 'id', $attachObj->asset_id);
 
 				// LOAD PAGE
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/userPanel', $data);
-				$this->load->view('asset_attach_edit', $data);
-				$this->load->view('templates/footer', $data);
+				$this->content = 'product/attach_edit';
+				$this->layout();
 			}else{
-				redirect('asset','refresh');
+				redirect('product/listing','refresh');
 			}
 		}elseif($page == 'del'){
-			$this->assetModel->assetAttachDel($id);
+			$this->productModel->assetAttachDel($id);
 		}
 	}
 
@@ -505,7 +497,7 @@ class Product extends MY_Controller{
 		$key = array($session_search['category_id'],$session_search['sub_category_id'],$session_search['keyword']);
 
 		// LOAD DATA
-		$assetObj = $this->assetModel->getAssetReportList($key);
+		$assetObj = $this->productModel->getAssetReportList($key);
 
 		$this->myexcel->setActiveSheetIndex(0);
 
