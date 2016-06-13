@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">เพิ่มข้อมูล</div>
             <div class="panel-body">
-                <?php echo form_open('product/add') ?>
+                <?php echo form_open_multipart('product/add') ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
