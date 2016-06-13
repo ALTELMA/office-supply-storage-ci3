@@ -109,8 +109,8 @@ class Product extends MY_Controller{
 		if($this->input->post('asset_add') != null) {
 
 			// CONFIG DESTINATION PATH
-			$thumbPath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/thumb';
-			$resizePath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/resize';
+			$thumbPath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/thumb';
+			$resizePath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/resize';
 			$thumbName = 'asset_cover_thumb'.date('YmdHis');
 			$resizeName = 'asset_cover_resize'.date('YmdHis');
 
@@ -180,8 +180,8 @@ class Product extends MY_Controller{
 				$thumb = $resize = '';
 				if(!empty($_FILES['asset_img']['tmp_name'])) {
 					// CONFIG DESTINATION PATH
-					$thumbPath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/thumb';
-					$resizePath = str_replace(SELF,'',FCPATH).'assets/images/asset_image/resize';
+					$thumbPath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/thumb';
+					$resizePath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/resize';
 					$thumbName = 'asset_cover_thumb'.date('YmdHis');
 					$resizeName = 'asset_cover_resize'.date('YmdHis');
 
