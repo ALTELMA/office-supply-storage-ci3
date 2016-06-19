@@ -1,8 +1,5 @@
 */config/development
-<<<<<<< HEAD
-=======
 */config/config.php
->>>>>>> origin/master
 */config/database.php
 */logs/log-*.php
 !*/logs/index.html
