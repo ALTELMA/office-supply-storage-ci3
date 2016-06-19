@@ -1,6 +1,6 @@
 # Office Supply Storage System
 
-Application for store office supply, develop base on codeigniter 3 
+Application for store office supply, develop base on codeigniter 3
 
 - Add / Edit / Delete asset
 - Add / Edit / Delete asset's category
@@ -10,11 +10,8 @@ Application for store office supply, develop base on codeigniter 3
 - Not supported PHP7
 
 ## Changelog
-- Add init database file
-- Rename file name lowercase to uppercase, CI3 format
-
+- Change UX/UI implement with Bootstrap 3
 
 ## Next Phase
-- Change UX/UI implement with Bootstrap 3
 - Filter report
 - Add more features
