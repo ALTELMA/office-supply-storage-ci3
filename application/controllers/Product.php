@@ -110,7 +110,15 @@ class Product extends MY_Controller{
 
 			// CONFIG DESTINATION PATH
 			$thumbPath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/thumb';
+			if (!file_exists($thumbPath)) {
+				mkdir($thumbPath, 775);
+			}
+
 			$resizePath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/resize';
+			if (!file_exists($resizePath)) {
+				mkdir($resizePath, 775);
+			}
+
 			$thumbName = 'asset_cover_thumb'.date('YmdHis');
 			$resizeName = 'asset_cover_resize'.date('YmdHis');
 
@@ -181,7 +189,15 @@ class Product extends MY_Controller{
 				if(!empty($_FILES['asset_img']['tmp_name'])) {
 					// CONFIG DESTINATION PATH
 					$thumbPath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/thumb';
+					if (!file_exists($thumbPath)) {
+						mkdir($thumbPath, 775);
+					}
+
 					$resizePath = str_replace(SELF,'',FCPATH).'assets/img/asset_image/resize';
+					if (!file_exists($resizePath)) {
+						mkdir($thumbPath, 775);
+					}
+
 					$thumbName = 'asset_cover_thumb'.date('YmdHis');
 					$resizeName = 'asset_cover_resize'.date('YmdHis');
 
@@ -424,6 +440,9 @@ class Product extends MY_Controller{
 				if($this->input->post('submit') != null){
 					if($_FILES['uploadFile']['tmp_name']){
 						$path = str_replace(SELF,'',FCPATH).'assets/upload';
+						if (!file_exists($path)) {
+							mkdir($path, 775);
+						}
 						$fileName = rand(000000,999999).date('YmdHis');
 						$attach = $this->myupload->uploadFile($_FILES['uploadFile'], $path, $fileName);
 					}else{
@@ -459,6 +478,9 @@ class Product extends MY_Controller{
 				if($this->input->post('submit') != NULL){
 					if($_FILES['uploadFile']['tmp_name']){
 						$Path = str_replace(SELF,'',FCPATH).'assets/upload';
+						if (!file_exists($path)) {
+							mkdir($path, 775);
+						}
 						$fileName = rand(000000,999999).date('YmdHis');
 						$attach = $this->myupload->uploadFile($_FILES['uploadFile'],$Path,$fileName);
 					}else{
