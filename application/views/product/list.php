@@ -61,7 +61,7 @@
 							</td>
 							<td>
 								<?php if(!empty($product->value)): ?>
-									<?php echo number_format($product->value , 2) . ' <span class=\'text-info\'>(รวม VAT 7%)</span>'; ?>
+									<?php echo number_format($product->value); ?>
 								<?php else: ?>
 									<?php echo "-"; ?>
 								<?php endif ?>
