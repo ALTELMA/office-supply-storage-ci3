@@ -18,43 +18,78 @@ class Product extends MY_Controller
 
     public function index()
     {
-        // if (!$this->session->userdata('userLogData')) {
-        //     $this->data['title'] = 'ระบบฐานข้อมูลครุภัณฑ์และทรัพย์สินในสำนักงาน';
-        //     $this->content = 'login';
-        //     $this->layout('full-width-no-header');
-        // } else {
-        //     redirect('product/listing', 'refresh');
-        // }
+        $this->data['title'] = 'รายชื่อทรัพย์สินและครุภัณฑ์';
+        $this->content = 'product/index';
+        $this->layout();
     }
 
-    public function listing()
+    public function getDatable()
     {
-        // LOAD SESSION DATA
-        $session_data = $this->session->userdata('userLogData');
+        $data = [];
+        $requestData = $this->input->post();
 
-        // SET KEY FOR QUERY DATA SEARCH
-        $key = [$session_search['category_id'], $session_search['sub_category_id'], $session_search['keyword']];
+        $columns = [
+            0 => 'code',
+            1 => 'detail',
+            2 => 'soldDate',
+            3 => 'warrantyDate',
+            4 => 'price',
+            5 => 'status',
+            6 => 'remark',
+            7 => 'approve',
+            8 => 'actions'
+        ];
 
-        // LOAD DATA
-        $categoryList = $this->product_model->getDataList('category');
-        $cond = array('cat_id' => $session_search['category_id']); // SubCatCondition
-        $subCategoryList = $this->product_model->getDataList('sub_category', $cond);
+        $totalData = $this->product_model->count($requestData['search']['value']);
+        $totalFiltered = $totalData;
 
-        // QUERY DATABASE FROM SEARCH
-        $products = $this->product_model->getAssetDataList($key);
+        $products = $this->product_model->all($requestData['search']['value'], $columns[$requestData['order'][0]['column']], $requestData['order'][0]['dir'], $requestData['start'], $requestData['length']);
 
-        $this->data['title'] = 'รายชื่อทรัพย์สินและครุภัณฑ์';
-        $this->data['userID'] = $session_data['user_id'];
-        $this->data['name'] = $session_data['name'];
-        $this->data['categoryResult'] = $categoryList;
-        $this->data['subCategoryResult'] = $subCategoryList;
-        $this->data['products'] = $products;
-        $this->data['cat_id'] = $session_search['category_id'];
-        $this->data['subCat_id'] = $session_search['sub_category_id'];
-        $this->data['keyword'] = $session_search['keyword'];
+        foreach ($products as $product) {
 
-        $this->content = 'product/list';
-        $this->layout();
+            $buttons = '<a class="btn btn-warning btn-xs" href="product/edit/' . $product->id  . '"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" href="product/delete/' . $product->id  . '"><i class="fa fa-trash"></i></a>';
+
+            $soldDate = '-';
+            if ($product->soldDate != '0000-00-00') {
+                $soldDate = $this->mydatesystem->Thaidate($product->soldDate, 2);
+            }
+
+            $warrantyDate = '-';
+            if ($product->warrantyStartDate != '0000-00-00' && $product->warrantyEndDate != '0000-00-00') {
+                $warrantyDate = $this->mydatesystem->Thaidate($product->warrantyStartDate, 2) . ' - ' . $this->mydatesystem->ThaiDate($product->warrantyEndDate, 2);
+            }
+
+            $productPrice = !empty($product->price) ? number_format($product->price): '-';
+
+            if ($product->status === 1) {
+                $status = "<span class='label label-success'>" . $product->statusName . "</span>";
+            } else {
+                $status = "<span class='label label-danger'>" . $product->statusName . "</span>";
+            }
+
+            $remark = '-';
+            if ($product->remark) {
+                $remark = $product->remark;
+            }
+
+            if($product->IsApproved === 1) {
+                $approveAction = '<a href="' . base_url('product/verify/' . $product->id ) . '" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>';
+            } else {
+                $approveAction = '<a href="' . base_url('product/verify/' . $product->id ) . '" class="btn btn-success btn-xs"><i class="fa fa-exclamation-triangle"></i></a>';
+            }
+
+            $data[] = [$product->code, $product->detail, $soldDate, $warrantyDate, $productPrice, $status, $approveAction, $buttons];
+        }
+
+        $json_data = array(
+            "draw"            => intval( $requestData['draw'] ),
+            "recordsTotal"    => intval( $totalData ),
+            "recordsFiltered" => intval( $totalFiltered ),
+            "data"            => $data
+            );
+
+        echo json_encode($json_data);
     }
 
     // VIEW ASSET DETAIL
@@ -488,7 +523,6 @@ class Product extends MY_Controller
 
     public function report()
     {
-
         // LOAD SESSION DATA
         $session_data = $this->session->userdata('userLogData');
         $session_search = $this->session->userdata('searchData');

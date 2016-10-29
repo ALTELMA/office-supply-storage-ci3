@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo base_url('dashboard/index'); ?>">OSS Admin</a>
+            <a class="navbar-brand" href="<?php echo base_url('dashboard/index'); ?>">OSS Admin V3</a>
         </div>
         <!-- /.navbar-header -->
 
@@ -16,12 +16,12 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <?php echo $this->session->userdata('userLogData')['username']; ?> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i>  <?php echo $this->session->userdata('username'); ?> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="<?php echo base_url('user/view/' . $this->session->userdata('userLogData')['user_id']); ?>"><i class="fa fa-user fa-fw"></i> ข้อมูลส่วนตัว</a>
+                    <li><a href="<?php echo base_url('user/view/' . $this->session->userdata('user_id')); ?>"><i class="fa fa-user fa-fw"></i> ข้อมูลส่วนตัว</a>
                     </li>
-                    <li><a href="<?php echo base_url('user/password/' . $this->session->userdata('userLogData')['user_id']); ?>"><i class="fa fa-key fa-fw"></i> เปลี่นรหัสผ่าน</a>
+                    <li><a href="<?php echo base_url('user/password/' . $this->session->userdata('user_id')); ?>"><i class="fa fa-key fa-fw"></i> เปลี่นรหัสผ่าน</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="<?php echo base_url('user/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a>
@@ -46,8 +46,8 @@
                         </span>
                         </div>
                     </li> -->
-                    <li><a href="<?php echo base_url('dashboard/index'); ?>"><i class="fa fa-dashboard fa-fw"></i> แดชบอร์ด</a></li>
-                    <li><a href="<?php echo base_url('product/listing'); ?>"><i class="fa fa-cube fa-fw"></i> ทรัพย์สิน</a></li>
+                    <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard fa-fw"></i> แดชบอร์ด</a></li>
+                    <li><a href="<?php echo base_url('product'); ?>"><i class="fa fa-cube fa-fw"></i> ทรัพย์สิน</a></li>
                     <li><a href="<?php echo base_url('product/category'); ?>"><i class="fa fa-cubes fa-fw"></i> ประเภททรัพย์สิน</a></li>
                     <li><a href="<?php echo base_url('product/subcategory'); ?>"><i class="fa fa-tags fa-fw"></i> หมวดหมู่ทรัพย์สิน</a></li>
                     <li><a href="<?php echo base_url('product/report'); ?>"><i class="fa fa-line-chart fa-fw"></i> ออกรายงาน</a></li>

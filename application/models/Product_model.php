@@ -20,6 +20,89 @@ class Product_model extends CI_Model
         return $output;
     }
 
+    public function count($keyword)
+    {
+        $query = $this->db->get('assets');
+
+        if (!empty($keyword)) {
+            $this->db->where("(
+                assets.name LIKE '%keyword%'
+                OR assets.email LIKE '%keyword%'
+                OR assets.tel LIKE '%keyword%'
+            )");
+        }
+
+        return $query->num_rows();
+    }
+
+    public function all($keyword, $sort, $order, $start, $length)
+    {
+        if (!empty($keyword)) {
+            $this->db->where("(
+                assets.name LIKE '%keyword%'
+                OR assets.email LIKE '%keyword%'
+                OR assets.tel LIKE '%keyword%'
+            )");
+        }
+
+        $this->db->join('asset_status', 'assets.status = asset_status.status_id');
+
+        if ($sort != '' && $order != '') {
+            $this->db->order_by('assets.' . $sort, $order);
+        }
+
+        $this->db->where('deleted_at', NULL);
+        $query = $this->db->get('assets', $length, $start);
+
+        return $query->result();
+    }
+
+    // public function find($id)
+    // {
+    //     $query = $this->db->where('id', $id)->get('customers');
+    //
+    //     return $query->row();
+    // }
+    //
+    // public function create($inputs)
+    // {
+    //     $data = [
+    //         'name' => $inputs['name'],
+    //         'address' => $inputs['address'],
+    //         'tel' => $inputs['tel'],
+    //         'email' => $inputs['email'],
+    //         'created_at' => date('Y-m-d H:i:s'),
+    //         'updated_at' => date('Y-m-d H:i:s'),
+    //     ];
+    //
+    //     $this->db->insert('customers', $data);
+    //
+    //     return $this->db->insert_id();
+    // }
+    //
+    // public function update($id, $inputs)
+    // {
+    //     $data = [
+    //         'name' => $inputs['name'],
+    //         'address' => $inputs['address'],
+    //         'tel' => $inputs['tel'],
+    //         'email' => $inputs['email'],
+    //         'created_at' => date('Y-m-d H:i:s'),
+    //         'updated_at' => date('Y-m-d H:i:s'),
+    //     ];
+    //
+    //     $this->db->where('id', $id)->update('customers', $data);
+    // }
+    //
+    // public function delete($id, $softdelete = true)
+    // {
+    //     if ($softdelete) {
+    //         $this->db->where('id', $id)->update('customers', ['deleted_at' => date('Y-m-d H:i:s')]);
+    //     } else {
+    //         $this->db->where('id', $id)->delete('customers');
+    //     }
+    // }
+
     // GET REGULAR DATA LIST
     public function getDataList($table, $cond = null)
     {
@@ -117,7 +200,7 @@ class Product_model extends CI_Model
     }
 
     // GET ASSET SEARCH DATA LIST
-    public function getAssetDataList($key)
+    public function getAssetDataList($key = [])
     {
         $this->db->select()->from('asset');
         $this->db->join('asset_status', 'asset.status = asset_status.status_id', 'left outer');

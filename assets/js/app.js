@@ -1,17 +1,12 @@
-// JavaScript Document
-$(document).ready(function(){
+$(function() {
 
-	// =======================================================================
 	// COMMON FUNCTION
-	// =======================================================================
 	var getFullURL = window.location.href;
 	var getURLSplit = getFullURL.split('/');
 	var getRootURL = getURLSplit[0]+'/'+getURLSplit[1]+'/'+getURLSplit[2]+'/';
 
-	// =======================================================================
-	// DATEPICKER
-	// =======================================================================
 
+	// DATEPICKER
 	// INITIAL FUNCTION
 	$('input[type=text].dateSelect').datepicker({
 		changeMonth: true,
@@ -62,9 +57,7 @@ $(document).ready(function(){
 		});
 	});
 
-	// ==========================================================================
 	// ASSET SELECT CATEGORY
-	// ==========================================================================
 	$('#assetCat').change(function(){
 
 		var cat_id = $(this).val();
@@ -79,4 +72,31 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	// Datatables
+    var customerDatable = getDatableAjax($('#productDataTable'), 'product/getDatable');
 });
+
+function getDatableAjax(element, url) {
+    var dataTableAjax;
+        dataTableAjax = element.DataTable({
+            "processing": true,
+            "serverSide": true,
+            "responsive": true,
+            "stateSave": true,
+            "columnDefs": [
+                {
+                    "targets": -1,
+                    "orderable": false,
+                    "sClass": 'text-center'
+                }
+            ],
+            "ajax": {
+                "url": url,
+                "type": "POST",
+            },
+            "aaSorting": [[0, "desc"]],
+        });
+
+    return dataTableAjax;
+}
