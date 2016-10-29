@@ -1,17 +1,14 @@
-<?php if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product extends MY_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
 
         // LOAD MODEL
-        $this->load->model('userModel', '', true);
-        $this->load->model('productModel', '', true);
+        $this->load->model('product_model', '', true);
 
         // LOAD LIBRARY
         $this->load->library('MyUpload');
@@ -21,45 +18,30 @@ class Product extends MY_Controller
 
     public function index()
     {
-        if (!$this->session->userdata('userLogData')) {
-            $this->data['title'] = 'ระบบฐานข้อมูลครุภัณฑ์และทรัพย์สินในสำนักงาน';
-            $this->content = 'login';
-            $this->layout('full-width-no-header');
-        } else {
-            redirect('product/listing', 'refresh');
-        }
+        // if (!$this->session->userdata('userLogData')) {
+        //     $this->data['title'] = 'ระบบฐานข้อมูลครุภัณฑ์และทรัพย์สินในสำนักงาน';
+        //     $this->content = 'login';
+        //     $this->layout('full-width-no-header');
+        // } else {
+        //     redirect('product/listing', 'refresh');
+        // }
     }
 
     public function listing()
     {
-        if (!$this->session->userdata('userLogData')) {
-            redirect('', 'refresh');
-        }
-
-        // GET KEYWORD FROM SEARCH PANEL AND ADD TO SESSION
-        if ($this->input->post('searchSubmit') != null) {
-            $search_sess = [
-                'category_id'     => $this->input->post('assetCat'),
-                'sub_category_id' => $this->input->post('assetSubCat'),
-                'keyword'         => $this->input->post('txt_search')
-            ];
-            $this->session->set_userdata('searchData', $search_sess);
-        }
-
         // LOAD SESSION DATA
         $session_data = $this->session->userdata('userLogData');
-        $session_search = $this->session->userdata('searchData');
 
         // SET KEY FOR QUERY DATA SEARCH
         $key = [$session_search['category_id'], $session_search['sub_category_id'], $session_search['keyword']];
 
         // LOAD DATA
-        $categoryList = $this->productModel->getDataList('category');
+        $categoryList = $this->product_model->getDataList('category');
         $cond = array('cat_id' => $session_search['category_id']); // SubCatCondition
-        $subCategoryList = $this->productModel->getDataList('sub_category', $cond);
+        $subCategoryList = $this->product_model->getDataList('sub_category', $cond);
 
         // QUERY DATABASE FROM SEARCH
-        $products = $this->productModel->getAssetDataList($key);
+        $products = $this->product_model->getAssetDataList($key);
 
         $this->data['title'] = 'รายชื่อทรัพย์สินและครุภัณฑ์';
         $this->data['userID'] = $session_data['user_id'];
@@ -82,9 +64,9 @@ class Product extends MY_Controller
         $session_data = $this->session->userdata('userLogData');
 
         // LOAD ASSET DATA AND SEND TO PAGE
-        $product = $this->productModel->getAssetRow($id);
+        $product = $this->product_model->getAssetRow($id);
         $cond = array('asset_id' => $id);
-        $attachObj = $this->productModel->getDataList('asset_attachment', $cond);
+        $attachObj = $this->product_model->getDataList('asset_attachment', $cond);
 
         $this->data['title'] = 'รายละเอียดข้อมูลคุรภัณฑ์';
         $this->data['userID'] = $session_data['user_id'];
@@ -103,11 +85,11 @@ class Product extends MY_Controller
         $session_data = $this->session->userdata('userLogData');
 
         // LOAD DATA FROM DATABASE
-        $categoryList = $this->productModel->getDataList('category');
+        $categoryList = $this->product_model->getDataList('category');
         $cond = array('cat_id' => 1); // SubCatCondition
-        $subCategoryList = $this->productModel->getDataList('sub_category', $cond);
-        $statusList = $this->productModel->getDataList('asset_status');
-        $departmentList = $this->productModel->getDataList('department');
+        $subCategoryList = $this->product_model->getDataList('sub_category', $cond);
+        $statusList = $this->product_model->getDataList('asset_status');
+        $departmentList = $this->product_model->getDataList('department');
 
         $thumb = $resize = '';
         if ($this->input->post('asset_add') != null) {
@@ -145,7 +127,7 @@ class Product extends MY_Controller
             }
 
             // INSERT DATA
-            $this->productModel->assetAdd($thumb, $resize);
+            $this->product_model->assetAdd($thumb, $resize);
             redirect('product/listing', 'refresh');
         }
 
@@ -170,12 +152,12 @@ class Product extends MY_Controller
             $session_data = $this->session->userdata('userLogData');
 
             // LOAD DATA FROM DATABASE
-            $product = $this->productModel->getAssetRow($id);
-            $categoryList = $this->productModel->getDataList('category');
+            $product = $this->product_model->getAssetRow($id);
+            $categoryList = $this->product_model->getDataList('category');
             $cond = array('cat_id' => $product->cat_id); // SubCatCondition
-            $subCategoryList = $this->productModel->getDataList('sub_category', $cond);
-            $statusList = $this->productModel->getDataList('asset_status');
-            $departmentList = $this->productModel->getDataList('department');
+            $subCategoryList = $this->product_model->getDataList('sub_category', $cond);
+            $statusList = $this->product_model->getDataList('asset_status');
+            $departmentList = $this->product_model->getDataList('department');
 
             // CONFIG DATA SEND TO PAGE
             $this->data['title'] = 'แก้ไขข้อมูลทรัพย์สินและครุภัณฑ์';
@@ -227,7 +209,7 @@ class Product extends MY_Controller
                     $resize = $product->assetFullPic;
                 }
 
-                $this->productModel->assetUpdate($id, $thumb, $resize);
+                $this->product_model->assetUpdate($id, $thumb, $resize);
                 redirect('product/listing', 'refresh');
             }
 
@@ -244,11 +226,11 @@ class Product extends MY_Controller
     {
         if (!empty($id)) {
             // LOAD DATA
-            $assetObj = $this->productModel->getDataRow('asset', 'id', $id);
+            $assetObj = $this->product_model->getDataRow('asset', 'id', $id);
             $approveData = empty($assetObj->IsApproved)? 1 : 0 ;
 
             $updateData = array('IsApproved' => $approveData);
-            $this->productModel->updateData('asset', $updateData, 'id', $id);
+            $this->product_model->updateData('asset', $updateData, 'id', $id);
             redirect('product/listing', 'refresh');
         } else {
             redirect('product/listing', 'refresh');
@@ -259,7 +241,7 @@ class Product extends MY_Controller
     public function del($id)
     {
         if (!empty($id)) {
-            $this->productModel->assetDelete($id);
+            $this->product_model->assetDelete($id);
             redirect('product/listing', 'refresh');
         } else {
             redirect('product/listing', 'refresh');
@@ -275,7 +257,7 @@ class Product extends MY_Controller
         if ($page == null || $page == 'list') {
 
             // LOAD DATA FROM DATABASE
-            $categories = $this->productModel->getDataList('category');
+            $categories = $this->product_model->getDataList('category');
 
             $this->data['title'] = 'ประเภทของข้อมูลทรัพย์สินและครุภัณฑ์';
             $this->data['userID'] = $session_data['user_id'];
@@ -291,8 +273,8 @@ class Product extends MY_Controller
                 $cond = array('cat_id' => $id);
 
                 // LOAD DATA
-                $categoryObj = $this->productModel->getDataRow('category', 'cat_id', $id);
-                $subCatList = $this->productModel->getDataList('sub_category', $cond);
+                $categoryObj = $this->product_model->getDataRow('category', 'cat_id', $id);
+                $subCatList = $this->product_model->getDataList('sub_category', $cond);
 
                 $this->data['title'] = 'รายละเอียดประเภทครุภัณฑ์';
                 $this->data['userID'] = $session_data['user_id'];
@@ -305,7 +287,7 @@ class Product extends MY_Controller
             }
         } elseif ($page == 'add') {
             if ($this->input->post('submit')) {
-                $this->productModel->categoryAdd();
+                $this->product_model->categoryAdd();
                 redirect('product/category');
             }
 
@@ -322,10 +304,10 @@ class Product extends MY_Controller
             if (!empty($id)) {
 
                 // LOAD CATEGORY DATA
-                $category = $this->productModel->getDataRow('category', 'cat_id', $id);
+                $category = $this->product_model->getDataRow('category', 'cat_id', $id);
 
                 if ($this->input->post('submit')) {
-                    $this->productModel->categoryUpdate($id);
+                    $this->product_model->categoryUpdate($id);
                     redirect('product/category');
                 }
 
@@ -342,7 +324,7 @@ class Product extends MY_Controller
         // DEL ASSET CATEGORY
         } elseif ($page == 'del') {
             if (!empty($id)) {
-                $this->productModel->delDataRow('category', 'cat_id', $id);
+                $this->product_model->delDataRow('category', 'cat_id', $id);
                 redirect('product/category', 'refresh');
             }
         }
@@ -358,7 +340,7 @@ class Product extends MY_Controller
         if ($page == null || $page == 'list') {
 
             // LOAD DATA FROM DATABASE
-            $categories = $this->productModel->getDataList('sub_category');
+            $categories = $this->product_model->getDataList('sub_category');
 
             $this->data['title'] = 'หมวดหมู่ของทรัพย์สินและครุภัณฑ์';
             $this->data['userID'] = $session_data['user_id'];
@@ -370,10 +352,10 @@ class Product extends MY_Controller
 
         // EDIT ASSET SUB CATEGORY DATA
         } elseif ($page == 'add') {
-            $categoryList = $this->productModel->getDataList('category');
+            $categoryList = $this->product_model->getDataList('category');
 
             if ($this->input->post('submit')) {
-                $this->productModel->subCategoryAdd();
+                $this->product_model->subCategoryAdd();
                 redirect('product/subcategory/', 'refresh');
             }
 
@@ -391,12 +373,12 @@ class Product extends MY_Controller
             if (!empty($id)) {
 
                 // LOAD ASSET SUB CATEGORY DATA
-                $categoryList = $this->productModel->getDataList('category');
-                $subCategory = $this->productModel->getDataRow('sub_category', 'id', $id);
+                $categoryList = $this->product_model->getDataList('category');
+                $subCategory = $this->product_model->getDataRow('sub_category', 'id', $id);
 
                 // EDIT ASSET SUB CATEGORY DATA
                 if ($this->input->post('submit')) {
-                    $this->productModel->subCategoryUpdate($id);
+                    $this->product_model->subCategoryUpdate($id);
                     redirect('product/subcategory/edit/' . $subCategory->id);
                 }
 
@@ -415,8 +397,8 @@ class Product extends MY_Controller
         } elseif ($page == 'del') {
             if (!empty($id)) {
                 // LOAD ASSET SUB CATEGORY DATA
-                $subCategoryObj = $this->productModel->getDataRow('sub_category', 'id', $id);
-                $this->productModel->delDataRow('sub_category', 'id', $id);
+                $subCategoryObj = $this->product_model->getDataRow('sub_category', 'id', $id);
+                $this->product_model->delDataRow('sub_category', 'id', $id);
                 redirect('product/subcategory/', 'refresh');
             }
             redirect('product/category/', 'refresh');
@@ -444,7 +426,7 @@ class Product extends MY_Controller
                         $attach = '';
                     }
 
-                    $this->productModel->assetAttachAdd($attach);
+                    $this->product_model->assetAttachAdd($attach);
                     redirect('product/view/' . $id, 'refresh');
                 }
 
@@ -452,7 +434,7 @@ class Product extends MY_Controller
                 $this->data['title'] = 'เพิ่มไฟล์สำหรับครุภัณฑ์';
                 $this->data['userID'] = $session_data['user_id'];
                 $this->data['name'] = $session_data['name'];
-                $this->data['product'] = $this->productModel->getDataRow('asset', 'id', $id);
+                $this->data['product'] = $this->product_model->getDataRow('asset', 'id', $id);
 
                 $this->content = 'product/attach_add';
                 $this->layout();
@@ -468,7 +450,7 @@ class Product extends MY_Controller
                 $session_data = $this->session->userdata('userLogData');
 
                 // LOAD ASSET ATTACH DATA
-                $attachObj = $this->productModel->getDataRow('asset_attachment', 'id', $id);
+                $attachObj = $this->product_model->getDataRow('asset_attachment', 'id', $id);
 
                 if ($this->input->post('submit') != null) {
                     if ($_FILES['uploadFile']['tmp_name']) {
@@ -482,7 +464,7 @@ class Product extends MY_Controller
                         $attach = $attachObj->filePath;
                     }
 
-                    $this->productModel->assetAttachUpdate($id, $attachObj->asset_id, $attach);
+                    $this->product_model->assetAttachUpdate($id, $attachObj->asset_id, $attach);
                     redirect('product/view/'.$attachObj->asset_id, 'refresh');
                 }
 
@@ -491,7 +473,7 @@ class Product extends MY_Controller
                 $this->data['userID'] = $session_data['user_id'];
                 $this->data['name'] = $session_data['name'];
                 $this->data['attachData'] = $attachObj;
-                $this->data['product'] = $this->productModel->getDataRow('asset', 'id', $attachObj->asset_id);
+                $this->data['product'] = $this->product_model->getDataRow('asset', 'id', $attachObj->asset_id);
 
                 // LOAD PAGE
                 $this->content = 'product/attach_edit';
@@ -500,7 +482,7 @@ class Product extends MY_Controller
                 redirect('product/listing', 'refresh');
             }
         } elseif ($page == 'del') {
-            $this->productModel->assetAttachDel($id);
+            $this->product_model->assetAttachDel($id);
         }
     }
 
@@ -514,7 +496,7 @@ class Product extends MY_Controller
         $key = array($session_search['category_id'],$session_search['sub_category_id'],$session_search['keyword']);
 
         // LOAD DATA
-        $assetObj = $this->productModel->getAssetReportList($key);
+        $assetObj = $this->product_model->getAssetReportList($key);
 
         $this->myexcel->setActiveSheetIndex(0);
 
@@ -620,7 +602,7 @@ class Product extends MY_Controller
 
             $cat_id = $this->input->post('cat_id');
             $cond = array('cat_id' => $cat_id);
-            $subCategoryList = $this->productModel->getDataList('sub_category', $cond);
+            $subCategoryList = $this->product_model->getDataList('sub_category', $cond);
 
             if ($cat_id != 0) {
                 echo '<option value="">เลือกประเภทย่อยของทรัพย์สิน</option>';
@@ -635,7 +617,7 @@ class Product extends MY_Controller
             // COUNT DATA AND CHECK IT
             $code1 = $this->input->post('code1') != null?$this->input->post('code1'):'';
             $code2 = $this->input->post('code2') != null?$this->input->post('code2'):'';
-            $chkData = $this->productModel->getAssetCheck($code1, $code2);
+            $chkData = $this->product_model->getAssetCheck($code1, $code2);
 
             echo $chkData;
         }

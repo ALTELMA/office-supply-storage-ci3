@@ -1,9 +1,12 @@
-<?php if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ProductModel extends CI_Model
+class Product_model extends CI_Model
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     private function date2db($input)
     {

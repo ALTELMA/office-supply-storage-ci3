@@ -4,7 +4,23 @@ class MY_Controller extends CI_Controller
 {
     // set the class variable.
     var $template = [];
-    var $data     = [];
+    var $data = [];
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        // Authentication
+        if (!$this->session->has_userdata('logged_in') && (strtolower($this->router->class) != 'auth')) {
+            redirect(base_url('login'));
+        }
+
+        // Redirect already logged user access to login
+        if ($this->session->has_userdata('logged_in') && (strtolower($this->router->class) == 'auth' && strtolower($this->router->method) == 'index')) {
+            redirect(base_url('dashboard'));
+        }
+
+    }
 
     // Load layout
     public function layout($type = null) {

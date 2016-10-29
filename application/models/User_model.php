@@ -1,9 +1,47 @@
-<?php if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UserModel extends CI_Model
+class User_model extends CI_Model
 {
+    private function encodePassword($password)
+    {
+        return md5($password);
+    }
+
+    public function loginByName($username, $password)
+    {
+        if (!empty($username) && !empty($password)) {
+            $query = $this->db->where('username', $this->input->post('username'))
+                        ->where('password', $this->encodePassword($this->input->post('password')))
+                        ->limit(1)->get('users');
+
+            if ($query->num_rows()) {
+                return $query->row();
+            } else {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    public function loginByEmail($email, $password)
+    {
+        if (!empty($email) && !empty($password)) {
+            $query = $this->db->where('email', $email)
+                        ->where('password', $this->encodePassword($this->input->post('password')))
+                        ->limit(1)->get('users');
+
+            if ($query->num_rows()) {
+                return $query->row();
+            } else {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
     public function getUserList()
     {
         $this->db->select()->from('users');
