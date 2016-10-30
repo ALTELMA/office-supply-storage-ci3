@@ -36,8 +36,7 @@ class Product extends MY_Controller
             4 => 'price',
             5 => 'status',
             6 => 'remark',
-            7 => 'approve',
-            8 => 'actions'
+            7 => 'actions'
         ];
 
         $totalData = $this->product_model->count($requestData['search']['value']);
@@ -46,9 +45,6 @@ class Product extends MY_Controller
         $products = $this->product_model->all($requestData['search']['value'], $columns[$requestData['order'][0]['column']], $requestData['order'][0]['dir'], $requestData['start'], $requestData['length']);
 
         foreach ($products as $product) {
-
-            $buttons = '<a class="btn btn-warning btn-xs" href="product/edit/' . $product->id  . '"><i class="fa fa-pencil"></i></a>
-                        <a class="btn btn-danger btn-xs" href="product/delete/' . $product->id  . '"><i class="fa fa-trash"></i></a>';
 
             $soldDate = '-';
             if ($product->soldDate != '0000-00-00') {
@@ -62,7 +58,7 @@ class Product extends MY_Controller
 
             $productPrice = !empty($product->price) ? number_format($product->price): '-';
 
-            if ($product->status === 1) {
+            if ($product->status == 1) {
                 $status = "<span class='label label-success'>" . $product->statusName . "</span>";
             } else {
                 $status = "<span class='label label-danger'>" . $product->statusName . "</span>";
@@ -73,11 +69,16 @@ class Product extends MY_Controller
                 $remark = $product->remark;
             }
 
-            if($product->IsApproved === 1) {
+            if($product->IsApproved == 1) {
                 $approveAction = '<a href="' . base_url('product/verify/' . $product->id ) . '" class="btn btn-success btn-xs"><i class="fa fa-check"></i></a>';
             } else {
                 $approveAction = '<a href="' . base_url('product/verify/' . $product->id ) . '" class="btn btn-success btn-xs"><i class="fa fa-exclamation-triangle"></i></a>';
             }
+
+            $buttons =  $approveAction . ' ' .
+                        '<a class="btn btn-info btn-xs" href="product/view/' . $product->id  . '"><i class="fa fa-eye"></i></a>
+                        <a class="btn btn-warning btn-xs" href="product/edit/' . $product->id  . '"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-danger btn-xs" href="product/delete/' . $product->id  . '"><i class="fa fa-trash"></i></a>';
 
             $data[] = [$product->code, $product->detail, $soldDate, $warrantyDate, $productPrice, $status, $approveAction, $buttons];
         }

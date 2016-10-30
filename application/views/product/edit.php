@@ -121,7 +121,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" name="asset_edit" value="บันทึกข้อมูล">
-                            <input type="button" class="btn btn-default" value="ยกเลิก" onClick="window.location.href = '<?php echo base_url('product/listing'); ?>';">
+                            <input type="button" class="btn btn-default" value="ยกเลิก" onClick="window.location.href = '<?php echo base_url('product'); ?>';">
                         </div>
                     </div>
                 </div>

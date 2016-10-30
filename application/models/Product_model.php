@@ -22,13 +22,13 @@ class Product_model extends CI_Model
 
     public function count($keyword)
     {
-        $query = $this->db->get('assets');
+        $query = $this->db->get('asset');
 
         if (!empty($keyword)) {
             $this->db->where("(
-                assets.name LIKE '%keyword%'
-                OR assets.email LIKE '%keyword%'
-                OR assets.tel LIKE '%keyword%'
+                asset.name LIKE '%keyword%'
+                OR asset.email LIKE '%keyword%'
+                OR asset.tel LIKE '%keyword%'
             )");
         }
 
@@ -39,20 +39,20 @@ class Product_model extends CI_Model
     {
         if (!empty($keyword)) {
             $this->db->where("(
-                assets.name LIKE '%keyword%'
-                OR assets.email LIKE '%keyword%'
-                OR assets.tel LIKE '%keyword%'
+                asset.name LIKE '%keyword%'
+                OR asset.email LIKE '%keyword%'
+                OR asset.tel LIKE '%keyword%'
             )");
         }
 
-        $this->db->join('asset_status', 'assets.status = asset_status.status_id');
+        $this->db->join('asset_status', 'asset.status = asset_status.status_id');
 
         if ($sort != '' && $order != '') {
-            $this->db->order_by('assets.' . $sort, $order);
+            $this->db->order_by('asset.' . $sort, $order);
         }
 
         $this->db->where('deleted_at', NULL);
-        $query = $this->db->get('assets', $length, $start);
+        $query = $this->db->get('asset', $length, $start);
 
         return $query->result();
     }

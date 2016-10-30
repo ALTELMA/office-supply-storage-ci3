@@ -26,7 +26,7 @@
             <a href="<?php echo base_url('product/edit/' . $product->id);?>" class="btn btn-warning">
                 <i class="fa fa-pencil"></i> แก้ไขข้อมูล
             </a>
-            <a href="<?php echo base_url('product/listing');?>" class="btn btn-default">
+            <a href="<?php echo base_url('product');?>" class="btn btn-default">
                 <i class="fa fa-chevron-left"></i> ย้อนกลับ
             </a>
         </div>
