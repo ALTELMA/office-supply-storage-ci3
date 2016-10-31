@@ -7,7 +7,7 @@ Application for store office supply, develop base on codeigniter 3
 - Report from total data ( Cannot filter on this version )
 
 ## Requirement
-- Not supported PHP7
+- Not supported MySQL use MySQLi (recommend)
 
 ## Installation
 - Create database name "supply_storage" and import database with [link supply_storage.sql](https://github.com/ALTELMA/office-supply-storage-ci3/blob/master/supply_storage.sql)
@@ -16,9 +16,8 @@ Application for store office supply, develop base on codeigniter 3
 - Enjoy it!!
 
 ## Changelog
-- Change UX/UI implement with Bootstrap 3
+- Update upload class support PHP7
 
 ## Next Phase
 - Filter report
 - Add more features
-- Integrated system support PHP7
