@@ -325,8 +325,8 @@ class ProductModel extends CI_Model
         if (!empty($id)) {
 
             // PATH
-            $thumbPath = str_replace(SELF, '', FCPATH).'assets/images/asset_image/thumb/';
-            $resizePath = str_replace(SELF, '', FCPATH).'assets/images/asset_image/resize/';
+            $thumbPath = str_replace(SELF, '', FCPATH).'assets/img/asset_image/thumb/';
+            $resizePath = str_replace(SELF, '', FCPATH).'assets/img/asset_image/resize/';
 
             // LOAD DATA
             $assetData = $this->getAssetRow($id);

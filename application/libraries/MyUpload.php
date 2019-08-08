@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH'))exit('No direct script access allowed');
 
-/*
+/**
  * @Class : myUpload Class
  * @Extends Class : class.upload by Collin Verot
  * @author : Phongthorn Kumkankaewy
@@ -14,17 +14,24 @@
 require_once(APPPATH.'libraries/class.upload/class.upload.php');
 
 class MyUpload extends upload{
-	
-	public function MyUpload(){
-		
+
+	public function __construct()
+	{
+
 	}
-	
-	public function uploadFile($srcFile, $file_dst_path, $file_new_name){
-		
+
+	/**
+	 * @param $srcFile
+	 * @param $file_dst_path
+	 * @param $file_new_name
+	 *
+	 * @return bool|string
+	 */
+	public function uploadFile($srcFile, $file_dst_path, $file_new_name)
+	{
 		$this->upload($srcFile);
 		
 		if($this->uploaded){
-			
 			$this->file_new_name_body = $file_new_name;
 			$this->process($file_dst_path);
 			
@@ -35,29 +42,23 @@ class MyUpload extends upload{
 			}
 		}
 	}
-	
-	/*
-	 * @Method : imgUploadRatioY
-	 * @Param
-	 * srcFile = destination of temp upload file
-	 * file_dst_path = target destination upload file
-	 * file_new_name = new name of file upload
-	 * file_new_ext = change extension
-	 * width = new dimension of width
-	 *
-	 * @Description : This method use for upload any image
-	 * and resize image from your input new width. you can
-	 * force new extension,too.
-	 *
-	 */
-	public function imgUploadRatioY($srcFile, $file_dst_path, $file_new_name, $file_new_ext, $width){
 
+	/**
+	 * @param $srcFile
+	 * @param $file_dst_path
+	 * @param $file_new_name
+	 * @param $file_new_ext
+	 * @param $width
+	 *
+	 * @return string
+	 */
+	public function imgUploadRatioY($srcFile, $file_dst_path, $file_new_name, $file_new_ext, $width)
+	{
 		$this->upload($srcFile);
 		
 		if($this->uploaded){
 			if($this->file_is_image){
 				if($this->file_src_size < 2048000){
-					
 					$this->file_new_name_body = $file_new_name;
 					$this->file_new_name_ext = $file_new_ext;
 					$this->image_resize = TRUE;

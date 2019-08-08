@@ -43,6 +43,7 @@ class User extends MY_Controller
             }
 
             $this->session->set_userdata('userLogData', $sess_array);
+
             redirect('dashboard/index', 'refresh');
         } else {
             redirect('', 'refresh');
@@ -56,9 +57,41 @@ class User extends MY_Controller
         redirect('product', 'refresh');
     }
 
+    public function listing()
+    {
+        if (!$this->session->userdata('userLogData')) {
+            redirect('', 'refresh');
+        }
+
+        $session_data = $this->session->userdata('userLogData');
+        $users = $this->userModel->getUserList();
+
+        $this->data['title'] = 'รายชื่อผู้ใช้งานระบบ';
+        $this->data['userID'] = $session_data['user_id'];
+        $this->data['name'] = $session_data['name'];
+        $this->data['users'] = $users;
+
+        $this->content = 'user/list';
+        $this->layout();
+    }
+
+    public function add()
+    {
+        $this->data['title'] = 'เพิ่มข้อมูลผู้ใช้งานระบบ';
+        $this->content = 'user/add';
+        $this->layout();
+    }
+
+    public function create()
+    {
+        $this->userModel->create($this->input->post());
+
+        redirect('user/listing', 'refresh');
+    }
+
     public function view($id)
     {
-        $user = $this->userModel->getUserData($this->session->userdata('userLogData')['user_id']);
+        $user = $this->userModel->getUserData($id);
 
         $this->data['title'] = 'ข้อมูลผู้ใช้งานระบบ';
         $this->data['user'] = $user;
@@ -68,7 +101,7 @@ class User extends MY_Controller
 
     public function edit($id)
     {
-        $user = $this->userModel->getUserData($this->session->userdata('userLogData')['user_id']);
+        $user = $this->userModel->getUserData($id);
 
         $this->data['title'] = 'แก้ไขข้อมูลผู้ใช้งานระบบ';
         $this->data['user'] = $user;
@@ -83,9 +116,16 @@ class User extends MY_Controller
         redirect('user/view/' . $id, 'refresh');
     }
 
+    public function delete($id)
+    {
+        $this->userModel->delete($id);
+
+        redirect('user/listing/' . $id, 'refresh');
+    }
+
     public function password($id)
     {
-        $user = $this->userModel->getUserData($this->session->userdata('userLogData')['user_id']);
+        $user = $this->userModel->getUserData($id);
 
         $this->data['title'] = 'เปลี่ยนรหัสผ่าน';
         $this->data['user'] = $user;
@@ -99,6 +139,18 @@ class User extends MY_Controller
             redirect('user/view/' . $id, 'refresh');
         } else {
             redirect('user/password/' . $id, 'refresh');
+        }
+    }
+
+    public function verify($id)
+    {
+        if (!empty($id)) {
+            $user = $this->userModel->getUserData($id);
+            $approveData = empty($user->IsApproved)? 1 : 0 ;
+            $this->userModel->updateData('users', ['IsApproved' => $approveData], 'user_id', $id);
+            redirect('user/listing', 'refresh');
+        } else {
+            redirect('user/listing', 'refresh');
         }
     }
 }

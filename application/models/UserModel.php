@@ -4,27 +4,21 @@
 
 class UserModel extends CI_Model
 {
-
-    // GET USER LIST
     public function getUserList()
     {
-        $this->db->select()->from('users')->limit(1);
+        $this->db->select()->from('users');
         $query = $this->db->get();
 
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() >= 1) {
             return $query->result();
         } else {
             return false;
         }
     }
 
-    // CHECK USER LOGIN
     public function checkUserLogin($username, $password)
     {
-        $condition = array(
-                    'username' => $username,
-                    'password' => $password
-                    );
+        $condition = array('username' => $username, 'password' => $password);
 
         $this->db->select()->from('users');
         $this->db->where($condition);
@@ -58,6 +52,18 @@ class UserModel extends CI_Model
         }
     }
 
+    public function create($inputs)
+    {
+        $data = [
+            'username' => $inputs['txt_username'],
+            'name' => $inputs['txt_name'],
+            'password' => md5($inputs['txt_password']),
+            'password_format' => $inputs['txt_password']
+        ];
+
+        $this->db->insert('users', $data);
+    }
+
     public function update($inputs, $id)
     {
         $data = [
@@ -66,6 +72,17 @@ class UserModel extends CI_Model
         ];
 
         $this->db->update('users', $data, ['user_id' => $id]);
+    }
+
+    public function updateData($table, $data, $field, $value)
+    {
+        $cond = array($field => $value);
+        $this->db->update($table, $data, $cond);
+    }
+
+    public function delete($id)
+    {
+        $this->db->delete('users', ['user_id' => $id]);
     }
 
     public function updatePassword($inputs, $id)
