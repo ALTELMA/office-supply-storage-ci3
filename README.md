@@ -2,6 +2,7 @@
 
 Application for store office supply, develop base on codeigniter 3
 
+- Add / Edit / Users
 - Add / Edit / Delete asset
 - Add / Edit / Delete asset's category
 - Report from total data ( Cannot filter on this version )
