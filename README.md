@@ -1,4 +1,5 @@
 # Office Supply Storage System
+<a href="https://github.styleci.io/repos/57976780"><img src="https://github.styleci.io/repos/57976780/shield?branch=master" alt="StyleCI"></a>
 
 Application for store office supply, develop base on codeigniter 3
 
