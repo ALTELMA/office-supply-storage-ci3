@@ -47,6 +47,7 @@
                         </div>
                     </li> -->
                     <li><a href="<?php echo base_url('dashboard/index'); ?>"><i class="fa fa-dashboard fa-fw"></i> แดชบอร์ด</a></li>
+                    <li><a href="<?php echo base_url('user/listing'); ?>"><i class="fa fa-users fa-fw"></i> ผู้ใช้งานระบบ</a></li>
                     <li><a href="<?php echo base_url('product/listing'); ?>"><i class="fa fa-cube fa-fw"></i> ทรัพย์สิน</a></li>
                     <li><a href="<?php echo base_url('product/category'); ?>"><i class="fa fa-cubes fa-fw"></i> ประเภททรัพย์สิน</a></li>
                     <li><a href="<?php echo base_url('product/subcategory'); ?>"><i class="fa fa-tags fa-fw"></i> หมวดหมู่ทรัพย์สิน</a></li>
