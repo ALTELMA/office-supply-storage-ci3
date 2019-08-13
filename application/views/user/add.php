@@ -27,11 +27,11 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>ชื่อผู้ใช้</label>
-                            <input id="txt_username" class="form-control" name="txt_username" value="<?php echo $user->username; ?>" placeholder="ชื่อผู้ใช้">
+                            <input id="txt_username" class="form-control" name="txt_username" value="" placeholder="ชื่อผู้ใช้">
                         </div>
                         <div class="form-group">
                             <label>ชื่อ-นามสกุล</label>
-                            <input id="txt_name" class="form-control" name="txt_name" value="<?php echo $user->name; ?>" placeholder="ชื่อ-นามสกุล">
+                            <input id="txt_name" class="form-control" name="txt_name" value="" placeholder="ชื่อ-นามสกุล">
                         </div>
                     </div>
                 </div>
