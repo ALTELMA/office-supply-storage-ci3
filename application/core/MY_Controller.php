@@ -1,10 +1,10 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller
 {
     // set the class variable.
-    var $template = [];
-    var $data     = [];
+    public $template = [];
+    public $data     = [];
 
     // Load layout
     public function layout($type = null) {

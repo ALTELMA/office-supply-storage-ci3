@@ -10,8 +10,8 @@
  *
  */
 
-class MyLibrary{
-	
-	
+class MyLibrary
+{
+    
+    
 }
-?>
