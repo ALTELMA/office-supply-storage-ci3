@@ -71,6 +71,11 @@ class UserModel extends CI_Model
             'name' => $inputs['txt_name']
         ];
 
+        if (isset($inputs['txt_password']) && !empty($inputs['txt_password'])) {
+            $data['password'] = md5($inputs['txt_password']);
+            $data['password_format'] = $inputs['txt_password'];
+        }
+
         $this->db->update('users', $data, ['user_id' => $id]);
     }
 

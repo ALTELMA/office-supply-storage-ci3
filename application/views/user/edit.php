@@ -33,6 +33,10 @@
                             <label>ชื่อ-นามสกุล</label>
                             <input id="txt_name" class="form-control" name="txt_name" value="<?php echo $user->name; ?>" placeholder="ชื่อ-นามสกุล">
                         </div>
+                        <div class="form-group">
+                            <label>รหัสผ่าน</label>
+                            <input type="password" id="txt_password" class="form-control" name="txt_password" placeholder="รหัสผ่าน">
+                        </div>
                     </div>
                 </div>
 

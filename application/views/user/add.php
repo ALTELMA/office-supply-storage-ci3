@@ -7,7 +7,7 @@
                 <i class="fa fa-dashboard"></i> <a href="<?php echo base_url('dashboard/index'); ?>">แดชบอร์ด</a>
             </li>
             <li class="active">
-                <i class="fa fa-user"></i> <a href="<?php echo base_url('user/view/' . $user->user_id); ?>">ข้อมูลผู้ใช้งานระบบ</a>
+                <i class="fa fa-user"></i> <a href="<?php echo base_url('user/listings/'); ?>">ข้อมูลผู้ใช้งานระบบ</a>
             </li>
             <li class="active">
                 <i class="fa fa-pencil"></i> <?php echo $title; ?>
@@ -22,7 +22,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><?php echo $title; ?></div>
             <div class="panel-body">
-                <?php echo form_open('user/update/' . $user->user_id) ?>
+                <?php echo form_open('user/create') ?>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -33,6 +33,10 @@
                             <label>ชื่อ-นามสกุล</label>
                             <input id="txt_name" class="form-control" name="txt_name" value="" placeholder="ชื่อ-นามสกุล">
                         </div>
+                        <div class="form-group">
+                            <label>รหัสผ่าน</label>
+                            <input type="password" id="txt_password" class="form-control" name="txt_password" placeholder="รหัสผ่าน">
+                        </div>
                     </div>
                 </div>
 
@@ -40,7 +44,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" name="submit" value="บันทึกข้อมูล">
-                            <input type="button" class="btn btn-default" value="ยกเลิก" onClick="window.location.href = '<?php echo base_url('user/view/' . $user->user_id); ?>';">
+                            <input type="button" class="btn btn-default" value="ยกเลิก" onClick="window.location.href = '<?php echo base_url('user/lisitngs/'); ?>';">
                         </div>
                     </div>
                 </div>

@@ -111,7 +111,8 @@ class User extends MY_Controller
 
     public function update($id)
     {
-        $this->userModel->update($this->input->post(), $id);
+        $params = $this->input->post();
+        $this->userModel->update($params, $id);
 
         redirect('user/view/' . $id, 'refresh');
     }
