@@ -1,6 +1,5 @@
 # Office Supply Storage System
 <a href="https://github.styleci.io/repos/57976780"><img src="https://github.styleci.io/repos/57976780/shield?branch=master" alt="StyleCI"></a>
-[![Total Downloads](https://poser.pugx.org/ALTELMA/office-supply-storage-ci3/d/total.svg)](https://github.com/ALTELMA/office-supply-storage-ci3)
 
 Application for store office supply, develop base on codeigniter 3
 
